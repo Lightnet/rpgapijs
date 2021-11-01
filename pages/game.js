@@ -8,7 +8,6 @@
 
 */
 
-
 import { useEffect, useState } from 'react';
 //import { getSession, useSession } from "next-auth/react";
 import { useSession } from "next-auth/react";
@@ -22,6 +21,13 @@ export default function Page() {
   useEffect(()=>{
     console.log("status:",status);
   },[status])
+
+  // session check while loading
+  if (status === "loading") {
+    return(<>
+      <div>Loading...</div>
+    </>)
+  }
 
   if (status === "authenticated") {
     return(<>

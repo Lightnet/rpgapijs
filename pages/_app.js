@@ -27,7 +27,7 @@ import "../styles/global.css";
 export default function App({Component, pageProps}){
   console.log("[[[=== _app.js ===]]]");
   const router = useRouter();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);//default 
 
   useEffect(async () => {
     console.log("APP INIT USEDEFFECT!");
@@ -45,12 +45,13 @@ export default function App({Component, pageProps}){
 
     //setLoading(true);
     const handleStart = (url) => {
+      //check other url "/" or "/game"
       url !== router.pathname ? setLoading(true) : setLoading(false);
       //setLoading(true);
-      console.log("loading:",loading);
+      //console.log("loading:",loading);
     };
     const handleComplete = (url) =>{ 
-      console.log("FINISH LOADING...");
+      //console.log("FINISH LOADING...",loading);
       setLoading(false);
     };
 
@@ -65,6 +66,14 @@ export default function App({Component, pageProps}){
       router.events.off("routeChangeError", handleComplete);
     }
   }, [loading]);
+
+  function checkLoading(){
+    if(loading){
+      console.log("render loading:",loading);
+      return (<div>Loading...</div>);
+    }
+    return (<div></div>);
+  }
   
   return (    
     <SessionProvider 
@@ -72,14 +81,7 @@ export default function App({Component, pageProps}){
       // Re-fetch session every 5 minutes
       refetchInterval={5 * 60}
       >
-      {/*
-        <Loading loading={loading} />
-        <div>{loading ? "loading..." : "hello"}</div>;
-        {loading && <Loading loading={loading} /> }
-      */}
-        {loading && (
-          <div>Loading...</div>
-        )}
+        {checkLoading()}
         <Component {...pageProps} />
     </SessionProvider>
   );

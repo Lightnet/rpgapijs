@@ -1,3 +1,12 @@
+/*
+
+# License: 
+- MIT (codes)
+- Multiple Licenses ( Contents, Assets, Images, Models and etc...)
+
+# Created By: Lightnet
+
+*/
 
 // https://www.pluralsight.com/guides/understanding-links-in-reactjs
 
@@ -19,19 +28,19 @@ export default function Page() {
     console.log("status:",status);
   },[status]);
 
+  // session check while loading
+  if (status === "loading") {
+    return(<>
+      <div>Loading...</div>
+    </>)
+  }
+
   //if session finish with auth pass
   if (status === "authenticated") {
     return(<>
       <Sign></Sign>
       <p>Signed in as {session.user.name}</p>
       <Link href='/game'>Game</Link>
-    </>)
-  }
-
-  // session check while loading
-  if (status === "loading") {
-    return(<>
-      <div>Loading...</div>
     </>)
   }
 
