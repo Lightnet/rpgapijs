@@ -1,0 +1,30 @@
+{
+  "name": "rpgapijs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db": "prisma studio",
+    "customserver": "NODE_ENV=production node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^3.3.0",
+    "gun": "^0.2020.1235",
+    "sqlite": "^4.0.23",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "next": "^12.0.2",
+    "next-auth": "^4.0.0-next.26",
+    "prisma": "^3.3.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
