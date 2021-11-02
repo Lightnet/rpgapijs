@@ -16,11 +16,50 @@ import SignArea from "../components/system/signarea";
 import Sign from "../components/system/btnsign";
 import Link from 'next/link';
 
+import GameWorld from "../components/game/gameworld";
+import CharacterCreation from "../components/game/charactercreation";
+
+//import Creature from "../lib/game/creature";
+
 export default function Page() {
-  const { data: session, status } = useSession()
+  const { data: session, status } = useSession();
+  const [characterExist, setCharacterExist ] = useState(false);
+
+
+  //var ctest = new Creature();
+  //console.log(ctest);
+  //var cjson = JSON.stringify(ctest);
+  //console.log(cjson);
+
   useEffect(()=>{
     console.log("status:",status);
+
   },[status])
+
+  useEffect(async()=>{
+    const response = await fetch('api/character');
+    const data = await response.json();
+    console.log("data: ",data)
+    if(data.message == "NOTFOUND"){
+      setCharacterExist(false);
+    }
+    if(data.message == "FOUND"){
+      setCharacterExist(true);
+    }
+  },[])
+
+  async function checkCharacterExist(){
+    console.log("checking....");
+    const response = await fetch('api/character');
+    const data = await response.json();
+    console.log("data: ",data)
+    if(data.message == "NOTFOUND"){
+      setCharacterExist(true);
+    }
+    if(data.message == "FOUND"){
+      setCharacterExist(true);
+    }
+  }
 
   // session check while loading
   if (status === "loading") {
@@ -33,7 +72,14 @@ export default function Page() {
     return(<>
       <Link href='/'>Home</Link>
       <Sign></Sign>
-      <p>Signed in as {session.user.name}</p>
+      <label>Signed in as {session.user.name}</label>
+      { characterExist ? <GameWorld /> : (
+      <>
+      <button onClick={checkCharacterExist}>checkCharacterExist</button>
+        <CharacterCreation />
+      </>
+      )}
+
     </>)
   }
 
@@ -41,3 +87,8 @@ export default function Page() {
     <SignArea></SignArea>
   </>)
 }
+
+/*
+<button onClick={checkCharacterExist}>checkCharacterExist<button>
+
+*/

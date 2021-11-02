@@ -13,7 +13,100 @@ datasource db {
 model User {
   id            String  @id @default(cuid())
   name          String?
+  aliasid       String?
   alias         String?
   passphrase    String?
+  token         String?
+  saltkey       String?
+  key           String?
+  isBan         String?
+  access        String?
   email         String?   @unique
+}
+
+model Character {
+  id            String  @id @default(cuid())
+  userid        String?
+  name          String?
+  data          String?
+  isDead        String?
+  isLeader      String?
+  date          String?
+}
+
+model Inventory {
+  id            String  @id @default(cuid())
+  userid        String?
+  type          String?
+  name          String?
+  data          String?
+  date          String?
+}
+
+model Storage {
+  id            String  @id @default(cuid())
+  userid        String?
+  type          String?
+  name          String?
+  data          String?
+  date          String?
+}
+
+model Chest {
+  id            String  @id @default(cuid())
+  tagid         String?
+  type          String?
+  name          String?
+  data          String?
+  date          String?
+}
+
+model MapList {
+  id            String  @id @default(cuid())
+  itemid        String?
+  name          String?
+  type          String?
+  data          String?
+  x             String?
+  y             String?
+  z             String?
+  date          String?
+}
+
+model MapEntity {
+  id            String  @id @default(cuid())
+  mapid         String?
+  entityid      String?
+  name          String?
+  type          String?
+  data          String?
+  x             String?
+  y             String?
+  z             String?
+  date          String?
+}
+
+model HomeBase {
+  id            String  @id @default(cuid())
+  entityid      String?
+  name          String?
+  type          String?
+  data          String?
+  x             String?
+  y             String?
+  z             String?
+  date          String?
+}
+
+model HomeBaseEntity {
+  id            String  @id @default(cuid())
+  homebaseid    String?
+  entityid      String?
+  name          String?
+  type          String?
+  data          String?
+  x             String?
+  y             String?
+  z             String?
+  date          String?
 }
