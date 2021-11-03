@@ -1,7 +1,7 @@
 {
   "name": "rpgapijs",
   "version": "1.0.0",
-  "description": "",
+  "description": "prototype turn or tick base action.",
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
