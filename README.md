@@ -39,7 +39,13 @@ It not does not large scale build server that have not tested.
     Nextjs does different from web server as used pages folder as static render client and pages/api folder is used for request by fetch url call depend on the methods. So it reduce coding structure by a bit or lot depend the structure.
 
 # Database:
- - SQLITE
+
+## SQLITE
+- prisma helper
+
+## graphql:
+  Work in progress, testing...
+
 
 
 .env
@@ -48,6 +54,7 @@ HOST="http://localhost:3000"
 NEXTAUTH_URL="http://localhost:3000"
 DATABASE_URL="file:./dev.db"
 ```
+
 
 
 

@@ -9,21 +9,30 @@ import { useEffect, useState } from 'react';
 
 //import Creature from "../../lib/game/creature";
 
-import Map from "./map/map";
-import Explore from "./map/explore";
-import BattleScene from "./battle/battlescene";
-import CharacterStatus from "./entity/characterstatus";
-import Inventory from "./item/inventory";
-import Storage from "./item/storage";
-import HomeBase from "./location/homebase";
-import Outpost from "./location/outpost";
-import SkillsPanel from "./skills/skillspanel";
+//viusal scene
+import RPGMap from "./map/map";
+import RPGExplore from "./map/explore";
+import RPGBattleScene from "./battle/battlescene";
+import RPGHomeBase from "./location/homebase";
+import RPGOutpost from "./location/outpost";
+
+//panel
+import RPGCharacterStatus from "./entity/characterstatus";
+import RPGInventory from "./item/inventory";
+import RPGStoragePanel from "./item/storage";
+import RPGSkillsPanel from "./skills/skillspanel";
 
 export default function Component() {
 
   const {data: session, status} = useSession();
 
   const [view, setView] = useState("");
+
+  //window model
+  const [isCharacterPanel, setIsCharacterPanel] = useState(false);
+  const [isInventoryPanel, setIsInventoryPanel] = useState(false);
+  const [isStoragePanel, setIsStoragePanel] = useState(false);
+  const [isSkillsPanel, setIsSkillsPanel] = useState(false);
 
   useEffect(()=>{
     console.log("status:",status);
@@ -38,23 +47,23 @@ export default function Component() {
   function ViewRender(){
     console.log("battle...");
     if(view == "battle"){
-      return <BattleScene></BattleScene>
+      return <RPGBattleScene></RPGBattleScene>
     }else if(view == "map"){
-      return <Map></Map>
+      return <RPGMap></RPGMap>
     }else if(view == "explore"){
-      return <Explore></Explore>
+      return <RPGExplore></RPGExplore>
     }else if(view == "character"){
-      return <CharacterStatus></CharacterStatus>
+      return <RPGCharacterStatus></RPGCharacterStatus>
     }else if(view == "skills"){
-      return <SkillsPanel></SkillsPanel>
+      return <RPGSkillsPanel></RPGSkillsPanel>
     }else if(view == "inventory"){
-      return <Inventory></Inventory>
+      return <RPGInventory></RPGInventory>
     }else if(view == "storage"){
-      return <Storage></Storage>
+      return <RPGStoragePanel></RPGStoragePanel>
     }else if(view == "homebase"){
-      return <HomeBase></HomeBase>
+      return <RPGHomeBase></RPGHomeBase>
     }else if(view == "outpost"){
-      return <Outpost></Outpost>
+      return <RPGOutpost></RPGOutpost>
     }else{
       console.log("other scene...");
       return <label>Loading...</label>

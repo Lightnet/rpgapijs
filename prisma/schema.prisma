@@ -21,10 +21,24 @@ model User {
   key           String?
   isBan         String?
   access        String?
+  role          String?
+  battleid      String?
+  homebaseid    String?
+  outpostid     String?
   email         String?   @unique
 }
 
 model Character {
+  id            String  @id @default(cuid())
+  userid        String?
+  name          String?
+  data          String?
+  isDead        String?
+  isLeader      String?
+  date          String?
+}
+
+model Creature {
   id            String  @id @default(cuid())
   userid        String?
   name          String?

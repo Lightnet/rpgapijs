@@ -7,6 +7,7 @@ import { getCsrfToken, getSession } from "next-auth/react";
 import { PrismaClient } from '@prisma/client';
 import {clientDB} from '../db';
 import Creature from "../../lib/game/creature";
+import { v4 as uuidv4 } from 'uuid';
 
 export default async (req, res) => {
 
@@ -55,7 +56,8 @@ export default async (req, res) => {
     console.log("3")
     console.log(chardata.races)
     let playercharacter = new Creature({
-      name: chardata.name
+      id:uuidv4()
+      , name: chardata.name
       , gender: chardata.gender
       , jobs: chardata.jobs
       , races: chardata.races

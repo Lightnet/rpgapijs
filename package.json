@@ -15,7 +15,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@apollo/client": "^3.4.16",
     "@prisma/client": "^3.4.0",
+    "apollo-server-core": "^3.4.0",
+    "apollo-server-micro": "^3.4.0",
+    "axios": "^0.24.0",
+    "graphql": "^15.7.2",
     "gun": "^0.2020.1235",
     "sqlite": "^4.0.23",
     "uuid": "^8.3.2"
