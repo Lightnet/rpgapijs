@@ -24,16 +24,16 @@ export default function Component() {
     if((data.message=="FOUND") || (data.message=="CREATED")){
       let objs = JSON.parse(data.data);
       console.log(objs);
-      let objmap =new Map();
-      objs.forEach((item)=>{
-        objmap.set(item.id, item);
-      })
+      //let objmap =new Map();
+      //objs.forEach((item)=>{
+        //objmap.set(item.id, item);
+      //})
 
-      objs.map((item)=>{
+      //objs.map((item)=>{
         //console.log(item.id);
         //console.log(item);
-        console.log(item.name);
-      })
+        //console.log(item.name);
+      //})
       
       setEntities(objs);
       setIsBattle(true);
@@ -50,6 +50,11 @@ export default function Component() {
     })
     let data = await response.json();
     console.log(data);
+
+    if(data.message=="UPDATE"){
+      let objs = JSON.parse(data.data);
+      setEntities(objs);
+    }
   }
 
 

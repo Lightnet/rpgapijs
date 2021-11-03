@@ -36,7 +36,7 @@ export default async (req, res) => {
 
     if(users.length == 0){//need to fix later....
       console.log("NOTFOUND")
-      return res.json({message:"UAWENOTFOUND"});
+      return res.json({message:"USERNOTFOUND"});
     }
 
     const characters = await prisma.character.findMany({
@@ -134,7 +134,89 @@ export default async (req, res) => {
 
   //player action command and monster attack
   if(req.method == 'POST'){
-    console.log("USER ACTOPMS...")
+    console.log("USER ACTOPMS...");
+
+    console.log("req.body:",req.body);
+    let userData = JSON.parse(req.body);
+    console.log("userData:", userData);
+
+    const userCharacters = await prisma.character.findMany({
+      where:{
+        userid:{
+          equals:users[0].id
+        }
+      }
+    });
+
+    console.log("userCharacters:  ",userCharacters);
+    let mainCharacter = JSON.parse(userCharacters[0].data);
+
+    const userBattles = await prisma.battleField.findMany({
+      where:{
+        userid:{
+          equals:users[0].id
+        }
+      }
+    });
+
+    //console.log("userBattles: ", userBattles);
+    if(userBattles.length == 0){
+      console.log("NOTFOUND")
+    }
+
+    if(userBattles.length == 1){
+      console.log("FOUND")
+      let battleData = JSON.parse(userBattles[0].data);
+      console.log(battleData);
+      let player;
+      let opponent;
+
+      if(mainCharacter.id == battleData[0].id){
+        player=battleData[0];
+        opponent=battleData[1];
+      }
+
+      if(mainCharacter.id == battleData[1].id){
+        player=battleData[1];
+        opponent=battleData[0];
+      }
+
+      console.log("player: ",player);
+      console.log("opponent: ",opponent);
+      let attack = opponent.defencepoint - player.attackpoint;
+      if(attack >= 0){
+        attack = 0;
+      }
+      opponent.healthpoint = opponent.healthpoint + attack;
+
+      attack = (player.defencepoint - opponent.attackpoint);
+      if(attack >= 0){
+        attack=0;
+      }
+      player.healthpoint = player.healthpoint + attack;
+
+      let data=[];
+      data.push(opponent);
+      data.push(player);
+      console.log(data);
+      data= JSON.stringify(data);
+
+      // UPDATE BATTLEFIELD
+      const updateUser = await prisma.battleField.update({
+        where: {
+          id: userBattles[0].id
+        },
+        data: {
+          data: data,
+        },
+      });
+      
+      return res.json({
+        message:"UPDATE"
+        , data:data
+      });
+    }
+
   }
 
   //finish server api
