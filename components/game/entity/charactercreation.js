@@ -4,10 +4,9 @@
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from 'react';
 
-import {getSelectSpecies, getSelectJobs} from "../../lib/game/creature";
+import {getSelectSpecies, getSelectJobs} from "../../../lib/game/creature";
 
-import { makeId } from "../../lib/helper";
-
+import { makeId } from "../../../lib/helper";
 
 export default function Component({CreatedExist}) {
   const {data: session, status} = useSession();

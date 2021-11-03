@@ -17,7 +17,7 @@ import Sign from "../components/system/btnsign";
 import Link from 'next/link';
 
 import GameWorld from "../components/game/gameworld";
-import CharacterCreation from "../components/game/charactercreation";
+import CharacterCreation from "../components/game/entity/charactercreation";
 
 //import Creature from "../lib/game/creature";
 
