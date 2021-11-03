@@ -6,26 +6,21 @@ import { useEffect, useState } from 'react';
 
 import {getSelectSpecies, getSelectJobs} from "../../lib/game/creature";
 
-function makeid(length) {
-  var result           = '';
-  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  var charactersLength = characters.length;
-  for ( var i = 0; i < length; i++ ) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
- }
- return result;
-}
+import { makeId } from "../../lib/helper";
 
-export default function Component() {
+
+export default function Component({CreatedExist}) {
   const {data: session, status} = useSession();
   const _races = getSelectSpecies();
   const _jobs = getSelectJobs();
 
   const [name, setName] = useState("");
 
-  const [race, setRaces] = useState(["human"]);
+  const [races, setRaces] = useState(["human"]);
   const [jobs, setJobs] = useState(["warrior"]);
   const [gender, setGender] = useState("male");
+
+  const [isCreated, setIsCreated] = useState(false);
 
 
   useEffect(()=>{
@@ -42,16 +37,20 @@ export default function Component() {
       body:JSON.stringify({
         name:name,
         gender:gender,
-        races:race,
+        races:races,
         jobs:jobs
        })
     });
     const data = await response.json();
     console.log("data: ",data)
+    if(data.message == "CREATED"){
+      setIsCreated(true);
+      CreatedExist(true);
+    }
   }
 
   function btnRandomName(){
-    setName(makeid(16));
+    setName(makeId(16));
   }
 
   function TypeCharacterName(event){
@@ -71,6 +70,12 @@ export default function Component() {
   function selectJobs(event){
     console.log("select",event.target.value);
     setJobs([event.target.value])
+  }
+
+  if(isCreated){
+    return (<>
+      <label>Create</label>
+    </>);
   }
 
   if (status === "authenticated") {

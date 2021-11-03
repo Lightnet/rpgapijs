@@ -3,9 +3,10 @@
   Created by: Lightnet
 */
 
-import { getCsrfToken, getProviders, getSession } from "next-auth/react";
+import { getCsrfToken, getSession } from "next-auth/react";
 import { PrismaClient } from '@prisma/client';
 import {clientDB} from '../db';
+import Creature from "../../lib/game/creature";
 
 export default async (req, res) => {
 
@@ -29,7 +30,7 @@ export default async (req, res) => {
   if(req.method == 'POST'){
     if(users.length == 0){//need to fix later....
       console.log("NOTFOUND")
-      return res.json({message:"UAWENOTFOUND"});
+      return res.json({message:"USERNOTFOUND"});
     }
     if(users.length == 1){
       //console.log("FOUND")
@@ -38,7 +39,7 @@ export default async (req, res) => {
     console.log(req.body);
     var chardata = JSON.parse(req.body);
     console.log(chardata.name);
-
+    console.log("1")
     const characters0 = await prisma.character.findMany({
       where:{
         userid:{
@@ -46,28 +47,36 @@ export default async (req, res) => {
         }
       }
     });
-
+    console.log("2")
     if(characters0.length==1){
       console.log("FOUND")
       return res.json({message:"FOUND"});
     }
+    console.log("3")
+    console.log(chardata.races)
+    let playercharacter = new Creature({
+      name: chardata.name
+      , gender: chardata.gender
+      , jobs: chardata.jobs
+      , races: chardata.races
+    });
+
+    console.log("playercharacter: ", playercharacter );
 
     const saveUser = await prisma.character.create({
       data:{
-        userid:users[0].id,
-        name:chardata.name
+        userid:users[0].id
+        , name:chardata.name
+        , data: JSON.stringify(playercharacter)
 
       }
-    })
+    });
     
-    /*
     return res.json({
       id:saveUser.id
-      , name:saveUser.alias
-      , role:"member"
+      , message:"CREATED"
     });
-    */
-
+    
 
     return res.json({message:"TEST"});
 

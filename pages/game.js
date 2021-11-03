@@ -61,6 +61,12 @@ export default function Page() {
     }
   }
 
+  function checkCharacterExist(e){
+    console.log("CHECKING>>>...");
+    console.log(e)
+    setCharacterExist(e)
+  }
+
   // session check while loading
   if (status === "loading") {
     return(<>
@@ -76,7 +82,9 @@ export default function Page() {
       { characterExist ? <GameWorld /> : (
       <>
       <button onClick={checkCharacterExist}>checkCharacterExist</button>
-        <CharacterCreation />
+        <CharacterCreation
+        CreatedExist={checkCharacterExist}
+         />
       </>
       )}
 

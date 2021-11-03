@@ -110,3 +110,17 @@ model HomeBaseEntity {
   z             String?
   date          String?
 }
+
+model BattleField {
+  id            String  @id @default(cuid())
+  userid        String?
+  battleid      String?
+  areaid        String?
+  isBattle      String?
+  type          String?
+  data          String?
+  x             String?
+  y             String?
+  z             String?
+  date          String?
+}
