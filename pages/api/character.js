@@ -10,11 +10,8 @@ import Creature from "../../lib/game/creature";
 import { v4 as uuidv4 } from 'uuid';
 
 export default async (req, res) => {
-
   console.log("[[[=== CHARACTER ===]]]");
-
   console.log("req.method: ",req.method)
-
 
   const session = await getSession({ req })
   const prisma = clientDB(PrismaClient);
@@ -30,11 +27,11 @@ export default async (req, res) => {
   console.log(session);
   if(req.method == 'POST'){
     if(users.length == 0){//need to fix later....
-      console.log("NOTFOUND")
+      console.log("NOTFOUND >>")
       return res.json({message:"USERNOTFOUND"});
     }
     if(users.length == 1){
-      //console.log("FOUND")
+      console.log("FOUND")
       //return res.json({message:"FOUND"});
     }
     console.log(req.body);

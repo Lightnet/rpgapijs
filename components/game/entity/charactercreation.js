@@ -37,7 +37,8 @@ export default function Component({CreatedExist}) {
         name:name,
         gender:gender,
         races:races,
-        jobs:jobs
+        jobs:jobs,
+        attackpoint:5
        })
     });
     const data = await response.json();

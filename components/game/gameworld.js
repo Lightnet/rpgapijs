@@ -22,6 +22,9 @@ import RPGInventory from "./item/inventory";
 import RPGStoragePanel from "./item/storage";
 import RPGSkillsPanel from "./skills/skillspanel";
 
+import Modal from "../ui/emodal";
+import ModalWindow from "../ui/edragwindow";
+
 export default function Component() {
 
   const {data: session, status} = useSession();
@@ -34,6 +37,10 @@ export default function Component() {
   const [isStoragePanel, setIsStoragePanel] = useState(false);
   const [isSkillsPanel, setIsSkillsPanel] = useState(false);
 
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const [isModalWindow, setIsModalWindow] = useState(false);
+
   useEffect(()=>{
     console.log("status:",status);
   },[status]);
@@ -43,6 +50,18 @@ export default function Component() {
     console.log("view:>>",view);
     ViewRender()
   },[view]);
+
+  function openModal(){
+    if(isOpenModal){
+      setIsOpenModal(false);
+    }else{
+      setIsOpenModal(true);
+    }
+  }
+
+  function closeModal(){
+    setIsOpenModal(false);
+  }
 
   function ViewRender(){
     console.log("battle...");
@@ -88,6 +107,8 @@ export default function Component() {
         <button onClick={()=>btnAction("storage")}>Storage</button>
         <button onClick={()=>btnAction("homebase")}>HomeBase</button>
         <button onClick={()=>btnAction("outpost")}>Outpost</button>
+
+        <button onClick={()=>openModal()}>Modal</button>
       </div>
       <div style={{
         height:"480px"
@@ -96,12 +117,27 @@ export default function Component() {
         }}>
 
         {ViewRender()}
+      </div>
+      <div>
 
+        <ModalWindow
+          title="window"
+         >
+          <p>Move</p>
+          <p>this</p>
+          <p>DIV</p>
+        </ModalWindow>
+
+        <Modal
+          isOpen={isOpenModal}
+          closeModal={closeModal}
+        >
+          <p>Some text in the Modal..</p>
+        </Modal>
       </div>
-      </div>
+    </div>
     </>);
   }
-
 
   return (<>
     <div>Loading...</div>

@@ -47,10 +47,12 @@ export default function Component() {
         action:'attack'
         , type:'normal' //weapon attack
       })
-    })
+    });
+    
     let data = await response.json();
     console.log(data);
 
+    //server cal battle
     if(data.message=="UPDATE"){
       let objs = JSON.parse(data.data);
       setEntities(objs);
