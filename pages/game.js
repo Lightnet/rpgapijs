@@ -19,17 +19,11 @@ import Link from 'next/link';
 import GameWorld from "../components/game/gameworld";
 import CharacterCreation from "../components/game/entity/charactercreation";
 
-//import Creature from "../lib/game/creature";
-
 export default function Page() {
   const { data: session, status } = useSession();
-  const [characterExist, setCharacterExist ] = useState(false);
-
-
-  //var ctest = new Creature();
-  //console.log(ctest);
-  //var cjson = JSON.stringify(ctest);
-  //console.log(cjson);
+  const [ characterExist, setCharacterExist ] = useState(false);
+  //check character loading exist
+  const [ isLoading, setIsLoading ] = useState(true);
 
   useEffect(()=>{
     console.log("status:",status);
@@ -42,9 +36,11 @@ export default function Page() {
     console.log("data: ",data)
     if(data.message == "NOTFOUND"){
       setCharacterExist(false);
+      setIsLoading(false)
     }
     if(data.message == "FOUND"){
       setCharacterExist(true);
+      setIsLoading(false)
     }
   },[])
 
@@ -67,6 +63,15 @@ export default function Page() {
     setCharacterExist(e)
   }
 
+  //make sure the character exist is finish get data checks
+  function CharacterLoading(){
+    if(isLoading){
+      return <label>Loading...</label>
+    }else{
+      return <CharacterCreation CreatedExist={checkCharacterExist} />
+    }
+  }
+
   // session check while loading
   if (status === "loading") {
     return(<>
@@ -80,12 +85,7 @@ export default function Page() {
       <Sign></Sign>
       <label>Signed in as {session.user.name}</label>
       { characterExist ? <GameWorld /> : (
-      <>
-      <button onClick={checkCharacterExist}>checkCharacterExist</button>
-        <CharacterCreation
-        CreatedExist={checkCharacterExist}
-         />
-      </>
+        CharacterLoading()
       )}
 
     </>)
@@ -97,6 +97,6 @@ export default function Page() {
 }
 
 /*
-<button onClick={checkCharacterExist}>checkCharacterExist<button>
+<button onClick={checkCharacterExist}>checkCharacterExist</button>
 
 */

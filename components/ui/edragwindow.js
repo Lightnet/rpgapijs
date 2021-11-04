@@ -9,11 +9,20 @@ import { useRef, useEffect, useState } from 'react';
 
 import styles from "./draggable.module.css";
 
-export default function Component({title,children}) {
+export default function Component({props,position,title,children}) {
   const ref = useRef();
   //console.log("ref");
   //console.log(ref);
-  //console.log(props);
+  console.log("props");
+  console.log(props);
+  console.log(this);
+  console.log(ref);
+  //console.log(ref.title);
+  console.log(position);
+  if(!position){
+    position=[0,0]
+  }
+
 
   const [relX, setrelX] = useState(0)
   const [relY, setrelY] = useState(0)

@@ -119,7 +119,7 @@ export default function Component() {
         {ViewRender()}
       </div>
       <div>
-
+        {/*
         <ModalWindow
           title="window"
          >
@@ -127,6 +127,7 @@ export default function Component() {
           <p>this</p>
           <p>DIV</p>
         </ModalWindow>
+        */}
 
         <Modal
           isOpen={isOpenModal}

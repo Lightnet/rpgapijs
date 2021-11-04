@@ -104,7 +104,18 @@ export default async (req, res) => {
       return res.json({message:"NOTFOUND"});
     }
     if(characters.length==1){
-      console.log("FOUND")
+      console.log("FOUND");
+
+      console.log(req.body);
+      console.log(req.pathname);
+      console.log(req.query);
+      let {action } = req.query;
+      if(action !=null){
+        if(action == "characterdata"){
+          console.log("FOUND CHAR DATA ACTION");
+          return res.json({message:"FOUND",data:JSON.parse(characters[0].data)});
+        }
+      }
       return res.json({message:"FOUND"});
     }
   }
