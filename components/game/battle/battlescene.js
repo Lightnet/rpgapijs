@@ -50,7 +50,17 @@ export default function Component() {
 
     //server cal battle
     if(data.message=="UPDATE"){
-      let objs = JSON.parse(data.data);
+      //let objs = JSON.parse(data.data);
+      //let objs = JSON.parse(data.data);
+      let battlefield = data.battlefield;
+      console.log(battlefield);
+
+      battlefield.ally[0]
+      let objs = [];
+      objs.push(battlefield.foe[0]);
+      objs.push(battlefield.ally[0]);
+
+
       setEntities(objs);
     }
   }

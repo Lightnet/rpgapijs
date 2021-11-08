@@ -122,10 +122,51 @@ export default async (req, res) => {
   }
 
   if(req.method == 'POST'){
+    let characters = await Character.find({userid:userid}).exec();
+    let battleFields = await BattleField.find({userid:userid}).exec();
 
+    if(battleFields.length==0){
+      return res.json({message:"NOTFOUND"});
+    }
+
+    if(battleFields.length==1){
+      let battleData = JSON.parse(battleFields[0].data);
+      battleid = battleFields[0].battleid;
+      
+      //set up entity for attacking each other
+      let player = battleData.ally[0];
+      let opponent = battleData.foe[0];
+
+      //base attack
+      let attack = opponent.defencepoint - player.attackpoint;
+      if(attack >= 0){
+        attack = 0;
+      }
+      opponent.healthpoint = opponent.healthpoint + attack;
+
+      attack = (player.defencepoint - opponent.attackpoint);
+      if(attack >= 0){
+        attack=0;
+      }
+      player.healthpoint = player.healthpoint + attack;
+
+      //reassign
+      battleData.ally[0]=player;
+      battleData.foe[0]=opponent;
+      console.log(battleData);
+      let data=[];
+      data= JSON.stringify(battleData);
+      try{
+        let battleFieldUpate = await BattleField.findOneAndUpdate({battleid: battleid},{data:data}, {
+          new: true
+        });
+        console.log(battleFieldUpate);
+        return res.json({message:"UPDATE",battlefield:battleData});
+      }catch(e){
+        console.log("FAIL UPDATE BATTLE!");
+      }
+    }
   }
-
-
   //finish server api
   //res.end();
   return res.json({message:"NOTFOUND"});
