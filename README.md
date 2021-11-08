@@ -1,35 +1,45 @@
 
 # Name: rpgapijs
 
-# Stage Dev:
-- idea design
-- prototype build.
-
 # License: 
 - MIT (codes)
 - Multiple Licenses ( Contents, Assets, Images, Models and etc...)
 
+# Stage Dev:
+- idea design
+- prototype build.
+
 # Created By: Lightnet
-
-# Packages:
-- gun (database)
-- prisma (database helper)
-- next (server / prerender react for client)
-- next-auth (auth checks)
-- react (client browser)
-- react-dom (client browser)
-- sqlite (database)
-- uuid (gen id's)
-
-## Notes:
-- Work in progress packages trying to keep simple but depend on the builds and testing...
 
 # Code Language:
 - javascript
 - babeljs
 
 # Informtion:
-    By using nextjs with react built in to create simple user interface. To build local pc for users to enjoy role playing game using mobile device is not plan but idea.
+  To create simple role playing game with text and 2D image.
+
+  By using nextjs with react built in to create simple user interface. To build local pc for users.
+
+# builds:
+- desktop (work in progress)
+- mobile (not build)
+
+## Notes:
+- Work in progress packages trying to keep simple but depend on the builds and testing...
+
+# Packages:
+- next (server / prerender react for client / components)
+- next-auth (auth checks)
+- react (client browser)
+- uuid (gen id's)
+- nanoid (gen id's)
+- mongoose (graph database)
+## not used:
+- prisma (database helper)
+- gun (database)
+- react-dom (client browser)
+- sqlite (database)
+- graphql (graph database)
 
 ## Testing battle type:
 - Turn base click. Since it used logic check on the server side to simulate simple battle calculate.
@@ -38,8 +48,7 @@
 
 It not does not large scale build server that have not tested.
 
-
-    Nextjs does different from web server as used pages folder as static render client and pages/api folder is used for request by fetch url call depend on the methods. So it reduce coding structure by a bit or lot depend the structure.
+  Nextjs does different from web server as used pages folder as static render client and pages/api folder is used for request by fetch url call depend on the methods. So it reduce coding structure by a bit or lot depend the structure.
 
 # Database:
 
