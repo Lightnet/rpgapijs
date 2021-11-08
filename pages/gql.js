@@ -1,3 +1,8 @@
+/*
+  LICENSE: MIT
+  Created by: Lightnet
+  
+*/
 
 // https://www.apollographql.com/docs/react/get-started/
 

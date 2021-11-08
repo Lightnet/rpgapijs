@@ -1,3 +1,9 @@
+/*
+  LICENSE: MIT
+  Created by: Lightnet
+  
+*/
+
 import axios from "axios";
 
 export const resolvers = {

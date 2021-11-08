@@ -1,7 +1,6 @@
 /*
   LICENSE: MIT
   Created by: Lightnet
-
 */
 
 import { useSession } from "next-auth/react";

@@ -1,4 +1,10 @@
-import  {  gql  }  from  "apollo-server-micro"; 
+/*
+  LICENSE: MIT
+  Created by: Lightnet
+    
+*/
+
+import  {  gql  }  from  "apollo-server-micro";
 
 export const typeDefs = gql`
   type  User {

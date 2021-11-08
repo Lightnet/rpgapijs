@@ -22,12 +22,12 @@ var gun;
 export default async (req, res) => {
   //console.log(res);
   //console.log(req);
-  console.log("req.method");
-  console.log(req.method);
-  console.log("req.path");
-  console.log(req.path);
-  console.log(req.url);
-  console.log(req.body);
+  //console.log("req.method");
+  //console.log(req.method);
+  //console.log("req.path");
+  //console.log(req.path);
+  //console.log(req.url);
+  //console.log(req.body);
 
   if(req.method == 'GET'){
     //path(req).val(data => res.send(data));

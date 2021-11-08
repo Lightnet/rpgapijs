@@ -7,23 +7,16 @@
 // https://hasura.io/blog/top-5-graphql-resources-for-next-js-developers-in-2021/
 // https://apuyou.io/blog/serverless-graphql-apollo-server-nextjs
 
-
-
-
 // https://lyonwj.com/blog/graphql-server-next-js-neo4j-aura-vercel
 
 
 /*
-
 {
   getUser {
     id
   }
 }
-
 */
-
-
 
 import  { gql, ApolloServer }  from "apollo-server-micro";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";

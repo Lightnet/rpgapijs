@@ -1,1 +1,6 @@
-work in progress, testing...
+
+# LICENSE: MIT
+# Created by: Lightnet
+
+# Information:  
+  Testing area. Not build.

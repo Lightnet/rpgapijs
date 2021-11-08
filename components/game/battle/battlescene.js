@@ -1,18 +1,17 @@
 /*
   LICENSE: MIT
   Created by: Lightnet
-
 */
-import { useSession } from "next-auth/react";
+
+//import { useSession } from "next-auth/react";
 import { useEffect, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+//import { v4 as uuidv4 } from 'uuid';
 
 export default function Component() {
   //const {data: session, status} = useSession();
   const [isBattle, setIsBattle] = useState(false);
   const [entities, setEntities] = useState([]);
-  console.log(uuidv4());
-
+  //console.log(uuidv4());
 
   async function randomBattle(){
     console.log("querry battle...");
