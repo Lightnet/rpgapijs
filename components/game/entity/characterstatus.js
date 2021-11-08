@@ -81,6 +81,37 @@ export default function Component() {
 
           <tr>
             <td>
+              <label>Level:</label>
+            </td>
+            <td>
+              <label>{characterData.level}</label>
+            </td>
+          </tr>
+
+
+          <tr>
+            <td>
+              <label>Experience:</label>
+            </td>
+            <td>
+              <label>{characterData.experience}</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <label>Experience Next:</label>
+            </td>
+            <td>
+              <label>{characterData.experiencenext}</label>
+            </td>
+          </tr>
+
+
+
+
+          <tr>
+            <td>
               <label>Health:</label>
             </td>
             <td>
@@ -94,6 +125,43 @@ export default function Component() {
             </td>
             <td>
               <label>{characterData.magicpoint}/{characterData.magicpointmax}</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <label>Attack:</label>
+            </td>
+            <td>
+              <label>{characterData.attackpoint}</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <label>Defence:</label>
+            </td>
+            <td>
+              <label>{characterData.defencepoint}</label>
+            </td>
+          </tr>
+
+
+          <tr>
+            <td>
+              <label>Magic Attack:</label>
+            </td>
+            <td>
+              <label>{characterData.magicattackpoint}</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <label>Magic Defence:</label>
+            </td>
+            <td>
+              <label>{characterData.magicdefencepoint}</label>
             </td>
           </tr>
 

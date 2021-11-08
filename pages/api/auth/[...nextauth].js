@@ -86,10 +86,11 @@ export default NextAuth({
       //console.log(profile);
       //console.log(isNewUser);
 
-      if (user) {//once the user login it will progress
+      if (user) {//once the user login it will progress data
         token.id = user.id;
         token.name = user.name;
         token.role = user.role;
+        token.token = user.token;
       }
       if(profile){
         token.type=profile.type;
@@ -127,7 +128,8 @@ export default NextAuth({
           name:token.name,
           email:token.email,
           rote:token.role,
-          id:token.id
+          id:token.id,
+          token:token.token,
         }
         //session.user=token.name;
       }

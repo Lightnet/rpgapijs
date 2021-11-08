@@ -1,6 +1,10 @@
 
 # Name: rpgapijs
 
+# Stage Dev:
+- idea design
+- prototype build.
+
 # License: 
 - MIT (codes)
 - Multiple Licenses ( Contents, Assets, Images, Models and etc...)
@@ -44,8 +48,6 @@ It not does not large scale build server that have not tested.
 
 ## graphql:
   Work in progress, testing...
-
-
 
 .env
 ```

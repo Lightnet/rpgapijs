@@ -85,7 +85,7 @@ export default function Component() {
       return <RPGOutpost></RPGOutpost>
     }else{
       console.log("other scene...");
-      return <label>Loading...</label>
+      return <label>[ work in progress! ] Loading...</label>
     }
   }
 

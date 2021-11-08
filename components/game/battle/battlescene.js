@@ -16,24 +16,20 @@ export default function Component() {
 
   async function randomBattle(){
     console.log("querry battle...");
-    let response = await fetch('api/battle',{
+    let response = await fetch('api/battle/battleturn',{
       method:'GET' // *GET, POST, PUT, DELETE, etc.
     })
     let data = await response.json();
     console.log(data);
     if((data.message=="FOUND") || (data.message=="CREATED")){
-      let objs = JSON.parse(data.data);
-      console.log(objs);
-      //let objmap =new Map();
-      //objs.forEach((item)=>{
-        //objmap.set(item.id, item);
-      //})
+      //let battlefield = JSON.parse(data.battlefield);
+      let battlefield = data.battlefield;
+      console.log(battlefield);
 
-      //objs.map((item)=>{
-        //console.log(item.id);
-        //console.log(item);
-        //console.log(item.name);
-      //})
+      battlefield.ally[0]
+      let objs = [];
+      objs.push(battlefield.foe[0]);
+      objs.push(battlefield.ally[0]);
       
       setEntities(objs);
       setIsBattle(true);
@@ -41,7 +37,7 @@ export default function Component() {
   }
 
   async function playerAttack(){
-    let response = await fetch('api/battle',{
+    let response = await fetch('api/battle/battleturn',{
       method:'POST' // *GET, POST, PUT, DELETE, etc.
       , body:JSON.stringify({
         action:'attack'
