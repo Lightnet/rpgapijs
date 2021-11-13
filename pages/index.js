@@ -16,9 +16,7 @@ import { useSession } from "next-auth/react";
 //import SocketIOClient from "socket.io-client";
 import SignArea from "../components/system/signarea";
 import Sign from "../components/system/sign";
-
-//import { Link } from 'react-router-dom';
-import Link from 'next/link'
+import Link from 'next/link';
 
 export default function Page() {
   const { data: session, status } = useSession()

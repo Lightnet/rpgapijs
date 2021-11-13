@@ -32,7 +32,7 @@ export default async (req, res)=>{
     const user = await User.findOne({username: userData.alias}).exec();
     console.log("user");
     console.log(user);
-    if(userData.newUser){
+    if(userData.isNewUser){
       if(!user){
         console.log("[newUser] NOT FOUND, creating...")
         //create user
@@ -64,7 +64,7 @@ export default async (req, res)=>{
           return res.json(user.toAuthJSON());
         }else{
           console.log("[login] password fail!");
-          return res.json({error:"NOTFOUND"});
+          return res.json({error:"PASSWORDFAIL"});
         }
       }
     }

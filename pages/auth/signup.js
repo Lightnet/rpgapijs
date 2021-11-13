@@ -17,12 +17,12 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default function SignIn({ csrfToken }) {
+export default function SignUp({ csrfToken }) {
   return (
     <center>
       <form method="post" action="/api/auth/callback/credentials">
         <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-        <input name="newUser" type="hidden" defaultValue="true" />
+        <input name="isNewUser" type="hidden" defaultValue="true" />
         <table>
           <tbody>
             <tr>

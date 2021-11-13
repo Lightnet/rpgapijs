@@ -2,7 +2,7 @@
   LICENSE: MIT
   Created by: Lightnet
 
-  Note: this override the _app data set up
+  Note: this override the _app.js set up
 */
 
 import React, { useState, useEffect } from "react";
@@ -18,13 +18,12 @@ import "../styles/global.css";
 //console.log(publicRuntimeConfig);
 
 export default function App({Component, pageProps}){
-  console.log("[[[=== _app.js ===]]]");
+  //console.log("[[[=== _app.js ===]]]");
   const router = useRouter();
   const [loading, setLoading] = useState(false);//default 
 
-  useEffect(async () => {
-    console.log("APP INIT USEDEFFECT!");
-    //setLoading(true);
+  useEffect(() => {
+    //console.log("APP INIT USEDEFFECT!");
     const handleStart = (url) => {
       //check other url "/" or "/game"
       url !== router.pathname ? setLoading(true) : setLoading(false);
@@ -43,14 +42,19 @@ export default function App({Component, pageProps}){
       router.events.off("routeChangeComplete", handleComplete);
       router.events.off("routeChangeError", handleComplete);
     }
-  }, [loading]);
+  }, [loading,router]);
 
-  function checkLoading(){
+  //render variable changes
+  useEffect(() => {
+    //console.log("isLoading: ",loading)
+  });
+
+  function isRenderLoading(){
     if(loading){
-      console.log("render loading:",loading);
+      //console.log("render loading:",loading);
       return (<div>Loading...</div>);
     }
-    return (<div></div>);
+    return (<></>);
   }
   
   return (    
@@ -59,26 +63,8 @@ export default function App({Component, pageProps}){
       // Re-fetch session every 5 minutes
       refetchInterval={5 * 60}
       >
-        {checkLoading()}
+        {isRenderLoading()}
         <Component {...pageProps} />
     </SessionProvider>
   );
 }
-
-/*
-function Auth({ children }) {
-  const { data: session, status } = useSession()
-  const isUser = !!session?.user
-  React.useEffect(() => {
-    if (status === "loading") return // Do nothing while loading
-    if (!isUser) signIn() // If not authenticated, force log in
-  }, [isUser, status])
-
-  if (isUser) {
-    return children
-  }
-  // Session is being fetched, or no user.
-  // If no user, useEffect() will redirect.
-  return <div>Loading...</div>
-}
-*/

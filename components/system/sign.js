@@ -5,17 +5,26 @@
 */
 
 import { useSession, signOut, signIn } from "next-auth/react";
+import Link from 'next/link';
 
 export default function Sign() {
-  const {data: session, loading} = useSession();
+  const {data: session, status} = useSession();
   //console.log(session);
+
+  if (status === "loading") {
+    return(<>
+      <div>Loading...</div>
+    </>)
+  }
+
   if (session) {
     return (<>
     <button onClick={() => signOut()}>Sign out</button>
     </>);
   }
+  
   return (<>
     <button onClick={() => signIn()}>Sign in</button>
-    <a href="/auth/signup">Sign Up</a>
+    <Link href="/auth/signup">Sign Up</Link>
   </>);
 }
