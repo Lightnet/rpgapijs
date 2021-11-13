@@ -6,9 +6,8 @@
 
 import { useSession, signOut, signIn } from "next-auth/react";
 
-export default function Component() {
+export default function Sign() {
   const {data: session, loading} = useSession();
-  //console.log("[[[[[[session");
   //console.log(session);
   if (session) {
     return (<>
@@ -17,6 +16,6 @@ export default function Component() {
   }
   return (<>
     <button onClick={() => signIn()}>Sign in</button>
-    <a href="/auth/credentials-signup">Sign Up</a>
+    <a href="/auth/signup">Sign Up</a>
   </>);
 }

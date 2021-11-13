@@ -8,16 +8,18 @@
 
 */
 
-import { useEffect, useState } from 'react';
+
 //import { getSession, useSession } from "next-auth/react";
-import { useSession } from "next-auth/react";
 //import SocketIOClient from "socket.io-client";
-import SignArea from "../components/system/signarea";
-import Sign from "../components/system/btnsign";
+//import SignArea from "../components/system/signarea";
+import { useEffect, useState } from 'react';
+import { useSession } from "next-auth/react";
+import Sign from "../components/system/sign";
 import Link from 'next/link';
 
 import GameWorld from "../components/game/gameworld";
 import CharacterCreation from "../components/game/entity/charactercreation";
+import AuthAccess from '../components/system/authaccess';
 
 export default function Page() {
   const { data: session, status } = useSession();
@@ -25,11 +27,11 @@ export default function Page() {
   //check character loading exist
   const [ isLoading, setIsLoading ] = useState(true);
 
-  useEffect(()=>{
-    console.log("status:",status);
+  //useEffect(()=>{
+    //console.log("status:",status);
+  //},[status])
 
-  },[status])
-
+  //mount once
   useEffect(async()=>{
     const response = await fetch('api/character');
     const data = await response.json();
@@ -43,19 +45,6 @@ export default function Page() {
       setIsLoading(false)
     }
   },[])
-
-  async function checkCharacterExist(){
-    console.log("checking....");
-    const response = await fetch('api/character');
-    const data = await response.json();
-    console.log("data: ",data)
-    if(data.message == "NOTFOUND"){
-      setCharacterExist(true);
-    }
-    if(data.message == "FOUND"){
-      setCharacterExist(true);
-    }
-  }
 
   function checkCharacterExist(e){
     console.log("CHECKING>>>...");
@@ -72,31 +61,17 @@ export default function Page() {
     }
   }
 
-  // session check while loading
-  if (status === "loading") {
-    return(<>
-      <div>Loading...</div>
-    </>)
-  }
-
-  if (status === "authenticated") {
-    return(<>
+  return (<>
+    <AuthAccess>
       <Link href='/'>Home</Link>
       <Sign></Sign>
-      <label>Signed in as {session.user.name}</label>
+      <label> Signed in as {session?.user?.name} </label>
       { characterExist ? <GameWorld /> : (
         CharacterLoading()
       )}
-
-    </>)
-  }
-
-  return (<>
-    <SignArea></SignArea>
+    </AuthAccess>
   </>)
 }
-
 /*
 <button onClick={checkCharacterExist}>checkCharacterExist</button>
-
 */

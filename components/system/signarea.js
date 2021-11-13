@@ -18,15 +18,16 @@ export default function Component() {
 
   if (session) {
     return (<>
-    <p>Signed in as: {session.user.name}</p>
+    <label>Signed in as: {session.user.name}</label>
     <button onClick={() => signOut()}>Sign out</button>
     </>);
   }
   
   return (<>
-    <label> Not signed in: User </label>
+    <label> Not </label>
     <button onClick={() => signIn()}>Sign in</button>
-    <a href="/auth/credentials-signup">Sign Up</a>
+    <span> | or | </span>
+    <a href="/auth/signup">Sign Up</a>
   </>);
 }
 
