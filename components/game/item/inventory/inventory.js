@@ -3,17 +3,19 @@
   Created by: Lightnet
 */
 
-
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from 'react';
 
-export default function Component() {
+import { ItemType } from "../../../../lib/game/item";
+
+export default function Inventory() {
+
   const {data: session, status} = useSession();
   const [items, setItems] = useState([]);
 
-
-
-
+  useEffect(()=>{
+    console.log(ItemType);
+  },[])
 
   function Itemused(){
 
@@ -48,10 +50,6 @@ export default function Component() {
                 <button>Use</button>
               </td>
             </tr>
-
-
-
-
 
           </tbody>
         </table>

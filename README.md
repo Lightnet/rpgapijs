@@ -83,7 +83,7 @@ https://nextjs.org/
 ```
 HOST="http://localhost:3000"
 NEXTAUTH_URL="http://localhost:3000"
-DATABASE_URL="file:./dev.db"
+DATABASE_URL="mongodb://127.0.0.1/rpg"
 ```
 
 

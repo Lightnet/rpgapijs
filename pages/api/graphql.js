@@ -9,7 +9,6 @@
 
 // https://lyonwj.com/blog/graphql-server-next-js-neo4j-aura-vercel
 
-
 /*
 {
   getUser {

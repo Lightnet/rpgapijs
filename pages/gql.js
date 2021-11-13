@@ -1,15 +1,13 @@
 /*
   LICENSE: MIT
   Created by: Lightnet
-  
 */
 
 // https://www.apollographql.com/docs/react/get-started/
 
-import { useEffect, useState } from 'react';
+//import { useEffect, useState } from 'react';
 //import { useSession } from "next-auth/react";
-import client from "./apolloclient";
-
+import client from "../lib/apolloclient"
 
 import {
   //ApolloClient,
@@ -19,9 +17,8 @@ import {
   gql
 } from "@apollo/client";
 
-
 export default function Page() {
-  const [data, setData] = useState(null);
+  //const [data, setData] = useState(null);
 
   function btnTest(){
     client
@@ -35,11 +32,8 @@ export default function Page() {
         `
       })
       .then(result =>{ 
-
         console.log(result)
-      
       });
-
   }
   // index page
   return (<>

@@ -9,7 +9,7 @@ import { getCsrfToken, getSession } from "next-auth/react";
 //import { PrismaClient } from '@prisma/client';
 //import {clientDB} from '../../../lib/db';
 import Creature from "../../../lib/game/creature";
-import { nanoid16 } from "../../../lib/genid";
+import { nanoid16 } from "../../../lib/helper";
 
 import { v4 as uuidv4 } from 'uuid';
 

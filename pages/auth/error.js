@@ -21,7 +21,7 @@ export default function Error() {
     //console.log("error");
     //console.log(error);
     setErrorMessage(error);
-  }, [router]);//need to load query since null mount
+  }, [router]);//need to load query since null mount then it process later
 
   function renderError(){
     if(errorMessage=='USEREXIST'){

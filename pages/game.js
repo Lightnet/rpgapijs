@@ -1,13 +1,9 @@
 /*
-
 # License: 
 - MIT (codes)
 - Multiple Licenses ( Contents, Assets, Images, Models and etc...)
-
 # Created By: Lightnet
-
 */
-
 
 //import { getSession, useSession } from "next-auth/react";
 //import SocketIOClient from "socket.io-client";
@@ -18,10 +14,10 @@ import Sign from "../components/system/sign";
 import Link from 'next/link';
 
 import GameWorld from "../components/game/gameworld";
-import CharacterCreation from "../components/game/entity/charactercreation";
+import CharacterCreation from "../components/game/entity/character/charactercreation";
 import AuthAccess from '../components/system/authaccess';
 
-export default function Page() {
+export default function Game() {
   const { data: session, status } = useSession();
   const [ characterExist, setCharacterExist ] = useState(false);
   //check character loading exist
@@ -35,7 +31,7 @@ export default function Page() {
   useEffect(async()=>{
     const response = await fetch('api/character');
     const data = await response.json();
-    console.log("data: ",data)
+    //console.log("data: ",data)
     if(data.message == "NOTFOUND"){
       setCharacterExist(false);
       setIsLoading(false)
@@ -47,8 +43,8 @@ export default function Page() {
   },[])
 
   function checkCharacterExist(e){
-    console.log("CHECKING>>>...");
-    console.log(e)
+    //console.log("CHECKING>>>...");
+    //console.log(e)
     setCharacterExist(e)
   }
 
@@ -72,6 +68,3 @@ export default function Page() {
     </AuthAccess>
   </>)
 }
-/*
-<button onClick={checkCharacterExist}>checkCharacterExist</button>
-*/

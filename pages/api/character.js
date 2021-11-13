@@ -15,7 +15,7 @@ export default async (req, res) => {
   console.log("req.method: ",req.method)
 
   const session = await getSession({ req });
-  console.log(session);
+  //console.log(session);
   //const prisma = clientDB(PrismaClient);
   let userid;
   let username;
@@ -58,7 +58,7 @@ export default async (req, res) => {
   if(req.method == 'GET'){
     let characters = await Character.find({userid:userid}).exec();
     console.log("Characters:", characters.length);
-    console.log(characters)
+    //console.log(characters)
     //check character if exist
     if(characters.length == 0){
       return res.json({message:"NOTFOUND"});
