@@ -8,6 +8,7 @@
 import React, { useState, useEffect } from "react";
 import { SessionProvider } from 'next-auth/react';
 import { useRouter } from "next/router";
+import Loading from "../components/system/loading";
 //import getConfig from 'next/config';
 import "../styles/global.css";
 //import './styles.css';
@@ -45,14 +46,15 @@ export default function App({Component, pageProps}){
   }, [loading,router]);
 
   //render variable changes
-  useEffect(() => {
+  //useEffect(() => {
     //console.log("isLoading: ",loading)
-  });
+  //});
 
   function isRenderLoading(){
     if(loading){
       //console.log("render loading:",loading);
-      return (<div>Loading...</div>);
+      //return (<div>Loading...</div>);
+      return <Loading></Loading>;
     }
     return (<></>);
   }

@@ -4,6 +4,7 @@
 */
 
 // https://next-auth.js.org/configuration/pages
+// https://simplernerd.com/next-auth-custom/
 
 import { getCsrfToken } from "next-auth/react";
 import Link from 'next/link';
@@ -18,6 +19,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function SignIn({ csrfToken }) {
+
   return (
     <center>
       <form method="post" action="/api/auth/callback/credentials">
@@ -26,7 +28,7 @@ export default function SignIn({ csrfToken }) {
           <tbody>
             <tr>
               <td>
-                <label>Username</label>
+                <label>Alias</label>
               </td>
               <td>
                 <input name="alias" type="text" />
@@ -34,7 +36,7 @@ export default function SignIn({ csrfToken }) {
             </tr>
             <tr>
               <td>
-                <label>Password</label>
+                <label>Passphrase</label>
               </td>
               <td>
                 <input name="passphrase" type="password" />
@@ -42,8 +44,9 @@ export default function SignIn({ csrfToken }) {
             </tr>
             <tr>
               <td colSpan="2">
-                <Link href="/">Back</Link><span> | </span>
-                <button type="submit">Sign in</button>
+                <center>
+                <Link href="/">Back</Link><span> | </span> <button type="submit">Sign in</button>
+                </center>
               </td>
             </tr>
           </tbody>

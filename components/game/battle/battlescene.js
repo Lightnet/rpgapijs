@@ -25,7 +25,7 @@ export default function Component() {
       let battlefield = data.battlefield;
       console.log(battlefield);
 
-      battlefield.ally[0]
+      //battlefield.ally[0]
       let objs = [];
       objs.push(battlefield.foe[0]);
       objs.push(battlefield.ally[0]);

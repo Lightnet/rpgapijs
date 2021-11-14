@@ -7,6 +7,8 @@
 
 import { getCsrfToken } from "next-auth/react";
 import Link from 'next/link';
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 // This is the recommended way for Next.js 9.3 or newer
 export async function getServerSideProps(context) {
@@ -18,6 +20,30 @@ export async function getServerSideProps(context) {
 }
 
 export default function SignUp({ csrfToken }) {
+
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(()=>{
+    //console.log(csrfToken);
+    const handleStart = (url) => (url !== router.asPath) && setLoading(true);
+    const handleComplete = (url) => (url === router.asPath) && setLoading(false);
+
+    router.events.on('routeChangeStart', handleStart)
+    router.events.on('routeChangeComplete', handleComplete)
+    router.events.on('routeChangeError', handleComplete)
+
+    return () => {
+      router.events.off('routeChangeStart', handleStart)
+      router.events.off('routeChangeComplete', handleComplete)
+      router.events.off('routeChangeError', handleComplete)
+    }
+  },[csrfToken, router]);
+
+  if(loading){
+    return <div>Loading...</div>
+  }
+
   return (
     <center>
       <form method="post" action="/api/auth/callback/credentials">
@@ -27,7 +53,7 @@ export default function SignUp({ csrfToken }) {
           <tbody>
             <tr>
               <td>
-                <label>Username</label>
+                <label>Alias</label>
               </td>
               <td>
                 <input name="alias" type="text" />
@@ -35,7 +61,7 @@ export default function SignUp({ csrfToken }) {
             </tr>
             <tr>
               <td>
-                <label>Password</label>
+                <label>Passphrase</label>
               </td>
               <td>
                 <input name="passphrase" type="password" />
@@ -44,8 +70,7 @@ export default function SignUp({ csrfToken }) {
             <tr>
               <td colSpan="2">
                 <center>
-                <Link href="/">Back</Link><span> | </span>
-                <button type="submit">Register</button>
+                <Link href="/">Back</Link><span> | </span> <button type="submit">Register</button>
                 </center>
               </td>
             </tr>

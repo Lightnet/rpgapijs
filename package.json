@@ -15,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dayjs": "^1.10.7",
     "gun": "^0.2020.1235",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.12",

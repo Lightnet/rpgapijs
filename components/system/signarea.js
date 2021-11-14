@@ -35,3 +35,6 @@ export default function Component() {
     <Link href="/auth/signup">Sign Up</Link>
   </>);
 }
+/*
+
+*/
