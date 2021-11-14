@@ -3,11 +3,13 @@
   Created by: Lightnet
 */
 
-import { getCsrfToken, getSession } from "next-auth/react";
+
 //import { PrismaClient } from '@prisma/client';
 //import {clientDB} from '../db';
+//import { v4 as uuidv4 } from 'uuid';
+import { getCsrfToken, getSession } from "next-auth/react";
 import Creature from "../../lib/game/creature";
-import { v4 as uuidv4 } from 'uuid';
+import { nanoid32 } from "../../lib/helper";
 import db from "../../lib/database";
 
 export default async (req, res) => {
@@ -82,10 +84,10 @@ export default async (req, res) => {
     //prevent adding more character need to chenage it later...
     if(Characters.length== 0){
       let chardata = JSON.parse(req.body);
-
+      let characterid = nanoid32();
       //create data
       let playercharacter = new Creature({
-        id:uuidv4()
+        id:characterid
         , name: chardata.name
         , gender: chardata.gender
         , jobs: chardata.jobs
@@ -94,14 +96,15 @@ export default async (req, res) => {
       });
 
       let newcharacter = new Character({
-        userid: userid
+        id: characterid
+        , userid: userid
         , name:chardata.name
         , data: JSON.stringify(playercharacter)
       });
 
       try{
         let saveCharacter = await newcharacter.save();
-        return res.json({message:"CREATED"});
+        return res.json({message:"CREATED",character:saveCharacter});
       }catch(e){
         return res.json({message:"FAIL"});
       }
