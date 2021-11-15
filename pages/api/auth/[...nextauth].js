@@ -131,7 +131,8 @@ export default NextAuth({
     updateAge: 24 * 60 * 60 // 24 hours
   },
   jwt: {
-    secret: 'INp8IvdIyeMcoGAgFGoA61DdBglwwSqnXJZkgz8PSnw'
+    secret: process.env.SECRET || "secret"
+    //secret: 'INp8IvdIyeMcoGAgFGoA61DdBglwwSqnXJZkgz8PSnw'
     //signingKey: {
       //kty: "oct",
       //kid: "Dl893BEV-iVE-x9EC52TDmlJUgGm9oZ99_ZL025Hc5Q",

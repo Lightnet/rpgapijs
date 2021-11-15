@@ -3,56 +3,22 @@
   Created by: Lightnet
 */
 
-
-//import { PrismaClient } from '@prisma/client';
-//import {clientDB} from '../db';
-//import { v4 as uuidv4 } from 'uuid';
 import { getCsrfToken, getSession } from "next-auth/react";
-//import Creature from "../../lib/game/creature";
 //import { nanoid32 } from "../../lib/helper";
-import db from "../../lib/database";
+import db,{ sessionTokenCheck } from "../../lib/database";
 
 export default async (req, res) => {
   console.log("[[[=== STORAGE ===]]]");
   console.log("req.method: ",req.method)
 
   const session = await getSession({ req });
-  //console.log(session);
-  //const prisma = clientDB(PrismaClient);
-  let userid;
-  let username;
-  if(session){
-    if(!session.user.name){
-      return res.json({error:"FAIL"});  
-    }
-    if(!session.user.token){
-      return res.json({error:"FAIL"});  
-    }
 
-    if(session.user.token){
-      const User = db.model('User');
-      const user = await User.findOne({username: session.user.name}).exec();
-      if(typeof session.user.token == "string"){
-        //console.log("STRING DATA...");
-        if(user){
-          //console.log("FOUND???");
-          let bcheck = user.checkToken(session.user.token);
-          //console.log("TOKEN: ", bcheck);
-          //console.log(user);
-          if(bcheck){
-            // pass
-            userid = user.id;
-            username = user.username;
-          }else{
-            return res.json({error:"FAIL"});
-          }
-        }else{
-          return res.json({error:"FAIL"});
-        }
-      }
-    }
-  }else{
-    return res.json({error:"FAIL"});
+  let {error, userid, username} = await sessionTokenCheck(session);
+  console.log(error);
+  console.log(userid);
+  console.log(username);
+  if(error){
+    return res.json({message:"FAIL"});
   }
 
   //const Character = db.model('Character');

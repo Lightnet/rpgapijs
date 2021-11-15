@@ -5,7 +5,7 @@
 
 import { useEffect, useState } from 'react';
 
-export default function BatteScene() {
+export default function BatteTurnBase() {
 
   const [isBattle, setIsBattle] = useState(false);
   const [entities, setEntities] = useState([]);

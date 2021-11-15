@@ -3,14 +3,14 @@
   Created by: Lightnet
 */
 
-
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from 'react';
 
-export default function Component() {
+export default function GameMasterMap() {
+
   const {data: session, status} = useSession();
 
   return (<>
-    <div>Map...</div>
+    <div>[ GM ] <button>Create</button> </div>
   </>);
 }

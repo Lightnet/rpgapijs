@@ -59,8 +59,7 @@ export default function Game() {
 
   return (<>
     <AuthAccess>
-      <Link href='/'>Home</Link>
-      <Sign></Sign>
+      <Link href='/'>Home</Link> <Sign></Sign>
       <label> Signed in as {session?.user?.name} </label>
       { characterExist ? <GameWorld /> : (
         CharacterLoading()

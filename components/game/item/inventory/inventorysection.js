@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from 'react';
 
 import { ItemType } from "../../../../lib/game/item";
+import GMItems from "../../../gamemaster/item/items";
 
 export default function Inventory() {
 
@@ -34,19 +35,29 @@ export default function Inventory() {
 
   }
 
-  async function createItem(){
+  
+
+  async function deleteItem(id){
+    if(!id){
+      return;
+    }
     let res = await fetch('api/inventory',{
       method:'POST'
       , body:JSON.stringify({
-        action:'CREATE'
+        action:'DELETE'
+      , id:id
       })
     });
     let data = await res.json();
     console.log(data);
     if(data.action){
-      if(data.action == 'CREATE'){
-
-        items.push(data.item);
+      if(data.action == 'DELETE'){
+        for(let i=0;i<items.length;i++  ){
+          if(items[i].id == data.id){
+            items.splice(i,1);
+            break;
+          }
+        }
         setItems([]);
         setItems(items);
       }
@@ -55,7 +66,8 @@ export default function Inventory() {
 
   return (<>
     <div>
-      <div>Inventory <button onClick={createItem}> Create Item </button> </div>
+      <GMItems />
+      <div>Inventory  </div>
       <div>
         <table>
           <tbody>
@@ -82,6 +94,7 @@ export default function Inventory() {
               </td>
               <td>
                 <button>Use</button>
+                <button onClick={()=>deleteItem(ent.id)}>Delete</button>
               </td>
             </tr>)
             })}
@@ -94,15 +107,4 @@ export default function Inventory() {
 }
 /*
 
-            <tr>
-              <td>
-                Test
-              </td>
-              <td>
-                0/0
-              </td>
-              <td>
-                <button>Use</button>
-              </td>
-            </tr>
 */

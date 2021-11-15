@@ -1,14 +1,24 @@
+# Design:
+  Working some simple role playing turn or tick depend the build.
 
-
+# map and creature:
+  Map or select map to battle with creature. One is movement around the map or select battle of the monster in the area.
 
 # Database:
-  Just work on SQLite stand alone.
+- MongoDB (work in progress)
+- SQLite (on hold)
 
 
 
 # ID's:
-- https://www.npmjs.com/package/uuid
+- nanoid
+```js
+
 ```
+
+
+- https://www.npmjs.com/package/uuid
+```js
 import { v4 as uuidv4 } from 'uuid';
 uuidv4(); // ⇨ '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
 ```

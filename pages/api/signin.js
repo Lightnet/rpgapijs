@@ -3,20 +3,26 @@
   Created by: Lightnet
 */
 
-import { getCsrfToken, getProviders } from "next-auth/react";
-//import { PrismaClient } from '@prisma/client';
-//import {clientDB} from '../db';
+// https://github.com/nextauthjs/next-auth/issues/717
+// https://next-auth.js.org/tutorials/securing-pages-and-api-routes
+// https://next-auth.js.org/configuration/options
+
+//import { getCsrfToken } from "next-auth/react";
 import db from "../../lib/database";
+
+//var secret = process.env.SECRET || "secret";
 
 export default async (req, res)=>{
   console.log("[[[=== SIGN IN ===]]]");
-  //const prisma = clientDB(PrismaClient);
 
-  //const csrfToken = await getCsrfToken({ req });
-  const csrfToken = await getCsrfToken();
-  console.log("csrfToken:",csrfToken);
-  //const providers = await getProviders();
-  //console.log("Providers", providers)
+  //const csrfToken1 = await getCsrfToken({ req}); 
+  //console.log("csrfToken1: ",csrfToken1);
+  //const csrfToken2 = await getCsrfToken();
+  //console.log("csrfToken2: ",csrfToken2);
+
+  //let apitoken = await fetch( process.env.HOST+'/api/auth/csrf');
+  //let data = await apitoken.json();
+  //console.log("token: ",data);
 
   if(req.method !== 'POST'){
     return res.status(405).json({message:'Method not allowed!'});
@@ -31,7 +37,7 @@ export default async (req, res)=>{
   //const user = await User.findOne({username: userData.alias}).then(function(user){
     const user = await User.findOne({username: userData.alias}).exec();
     console.log("user");
-    console.log(user);
+    //console.log(user);
     if(userData.isNewUser){
       if(!user){
         console.log("[newUser] NOT FOUND, creating...")
@@ -70,50 +76,7 @@ export default async (req, res)=>{
     }
   //});
 
-
-
   //res.json({id: 1, name: 'J Smith', email: 'jsmith@example.com'});
   console.log("[[[=== UNKNOWN LOGIN FAIL ===]]]")
   return res.json({error:"NOTFOUND"});
 };
-
-/*
-
-  //const allUsers  = await prisma.user.findMany({
-  const users = await prisma.user.findMany({
-    where:{
-      alias:{
-        equals:userData.alias
-      }
-    }
-  });
-  console.log("[[[=== LOGIN RESULT USER ==]]]");
-  console.log(users);
-  // https://next-auth.js.org/providers/credentials
-  if((users.length==0) && (userData.newUser=="true")){ //not found
-    console.log("[[[=== LOGIN REGISTER USER ==]]]");
-    const saveUser = await prisma.user.create({
-      data:{
-        alias:userData.alias,
-        passphrase:userData.passphrase
-      }
-    })
-    return res.json({
-      id:saveUser.id
-      , name:saveUser.alias
-      , role:"member"
-    });
-    //return res.json(saveUser);
-  }
-  if(users.length==1){
-    console.log("[[[=== LOGIN GRANT USER ==]]]");
-    return res.json({
-      id:users[0].id,
-      name:users[0].alias,
-      role:"member"
-    });  
-  }
-
-
-
-*/

@@ -9,9 +9,9 @@ import { useEffect, useState } from 'react';
 //import Creature from "../../lib/game/creature";
 
 //viusal scene
-import RPGMap from "./map/map";
+import RPGMap from "./map/mapsection";
 import RPGExplore from "./map/explore";
-import RPGBattleScene from "./battle/battlescene";
+import RPGBattleSection from "./battle/battlesection";
 import RPGHomeBase from "./location/homebase";
 import RPGOutpost from "./location/outpost";
 
@@ -28,7 +28,7 @@ export default function Component() {
 
   const {data: session, status} = useSession();
 
-  const [view, setView] = useState("");
+  const [view, setView] = useState("map");
 
   //window model
   const [isCharacterPanel, setIsCharacterPanel] = useState(false);
@@ -65,11 +65,9 @@ export default function Component() {
   function ViewRender(){
     console.log("battle...");
     if(view == "battle"){
-      return <RPGBattleScene></RPGBattleScene>
+      return <RPGBattleSection></RPGBattleSection>
     }else if(view == "map"){
       return <RPGMap></RPGMap>
-    }else if(view == "explore"){
-      return <RPGExplore></RPGExplore>
     }else if(view == "character"){
       return <RPGCharacterStatus></RPGCharacterStatus>
     }else if(view == "skills"){
@@ -98,7 +96,6 @@ export default function Component() {
     <div>
       <div>
         <button onClick={()=>btnAction("map")}>Map</button>
-        <button onClick={()=>btnAction("explore")}>Explore</button>
         <button onClick={()=>btnAction("battle")}>Battle</button>
         <button onClick={()=>btnAction("character")}>Character</button>
         <button onClick={()=>btnAction("skills")}>Skills</button>

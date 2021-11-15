@@ -3,10 +3,6 @@
   Created by: Lightnet
 */
 
-
-//import { PrismaClient } from '@prisma/client';
-//import {clientDB} from '../db';
-//import { v4 as uuidv4 } from 'uuid';
 import { getCsrfToken, getSession } from "next-auth/react";
 //import Creature from "../../lib/game/creature";
 //import { nanoid32 } from "../../lib/helper";
@@ -18,16 +14,15 @@ export default async (req, res) => {
 
   const session = await getSession({ req });
   //console.log(session);
-  //const prisma = clientDB(PrismaClient);
   //let userid;
   //let username;
   //console.log(await sessionTokenCheck(session))
   //console.log(await testCall())
 
   let {error, userid, username} = await sessionTokenCheck(session);
-  console.log(error);
-  console.log(userid);
-  console.log(username);
+  //console.log(error);
+  //console.log(userid);
+  //console.log(username);
   if(error){
     return res.json({message:"FAIL"});
   }
@@ -54,18 +49,23 @@ export default async (req, res) => {
     let data = JSON.parse(req.body);
     if(data.action){
       if(data.action=='CREATE'){
-        
+
         let newInventory = Inventory({
           userid:userid
           , name:'Healing potion'
         });
-
         let doc = await newInventory.save();
-
         console.log(doc);
-
         return res.json({action:"CREATE",item:doc});
       }
+
+      if(data.action=='DELETE'){
+        let deleteInventory = await Inventory.findOneAndDelete({id:data.id});
+        console.log(deleteInventory);
+        return res.json({action:"DELETE",id:data.id});
+      }
+
+      //ACTION END
     }
   }
 
