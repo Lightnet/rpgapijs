@@ -8,12 +8,12 @@
 //import {clientDB} from '../db';
 //import { v4 as uuidv4 } from 'uuid';
 import { getCsrfToken, getSession } from "next-auth/react";
-import Creature from "../../lib/game/creature";
-import { nanoid32 } from "../../lib/helper";
+//import Creature from "../../lib/game/creature";
+//import { nanoid32 } from "../../lib/helper";
 import db from "../../lib/database";
 
 export default async (req, res) => {
-  console.log("[[[=== CHARACTER ===]]]");
+  console.log("[[[=== HOMEBASE ===]]]");
   console.log("req.method: ",req.method)
 
   const session = await getSession({ req });
@@ -55,9 +55,9 @@ export default async (req, res) => {
     return res.json({error:"FAIL"});
   }
 
-  const Character = db.model('Character');
-
+  //const Character = db.model('Character');
   if(req.method == 'GET'){
+    /*
     let characters = await Character.find({userid:userid}).exec();
     console.log("Characters:", characters.length);
     //console.log(characters)
@@ -76,40 +76,13 @@ export default async (req, res) => {
       }
       return res.json({message:"FOUND"});
     }
+    */
   }
 
   if(req.method == 'POST'){
-    let Characters = await Character.find({userid:userid}).exec();
-    //prevent adding more character need to chenage it later...
-    if(Characters.length== 0){
-      let chardata = JSON.parse(req.body);
-      let characterid = nanoid32();
-      //create data
-      let playercharacter = new Creature({
-        id:characterid
-        , name: chardata.name
-        , gender: chardata.gender
-        , jobs: chardata.jobs
-        , races: chardata.races
-        , attackpoint: 5
-      });
-
-      let newcharacter = new Character({
-        id: characterid
-        , userid: userid
-        , name:chardata.name
-        , data: JSON.stringify(playercharacter)
-      });
-
-      try{
-        let saveCharacter = await newcharacter.save();
-        return res.json({message:"CREATED",character:saveCharacter});
-      }catch(e){
-        return res.json({message:"FAIL"});
-      }
-    }
+    
   }
 
   //res.end();
-  return res.json({message:"NOTFOUND"});
+  return res.json({action:"NOTFOUND"});
 };

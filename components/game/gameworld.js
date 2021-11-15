@@ -17,7 +17,7 @@ import RPGOutpost from "./location/outpost";
 
 //panel
 import RPGCharacterStatus from "./entity/character/characterstatus";
-import RPGInventory from "./item/inventory/inventory";
+import RPGInventory from "./item/inventory/inventorysection";
 import RPGStoragePanel from "./item/storage/storage";
 import RPGSkillsPanel from "./skills/skillspanel";
 

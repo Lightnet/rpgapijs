@@ -69,14 +69,15 @@ Nextjs does different from web server as used pages folder as static render clie
 
 This is base on the next.js server packages. Check for more information. Just the lib folder is custom for not conflict with the pages and api.
 
-https://nextjs.org/
+# links:
+- https://nextjs.org/
 
 # Database:
 - MongoDB
   -  Work in progress.
-- SQLITE
-  - prisma helper
-- graphql
+- SQLITE (on hold)
+  - prisma helper 
+- graphql (on hold)
   - not build just tests.
 
 .env

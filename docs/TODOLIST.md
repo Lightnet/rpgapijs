@@ -4,11 +4,20 @@
 - game (work in progress)
   - character data
     - stats (partly working)
+    - create character (add)
+    - level up (not added)
   - battle (work in progress)
     - turn base battle (work in progress)
+      - attack
+      - get experince / level up
+      - battle result 
+      - battle finish 
+    - tick base (not build)
   - inventory (not build)
   - map (not build)
     - locations (not build)
+    - position
+    - zones
   - Bome base (not build)
   - Out Post (not build)
   - Town (not build)
@@ -21,10 +30,13 @@
   - creatures (work in progres)
   - jobs (work in progres)
 - UI (work in progress)
-  - window modal (not build)
+  - window modal draggable (added)
+  - modal (added)
+
 - Settings (not build)
   - save config or reset position. (not build)
 
-- database
-  - sqltie with prisma (working in progress)
-  - graphql (testing...)
+- Database
+  - mongoose (mongodb) (work in progress)
+  - sqltie with prisma (on hold / testing...)
+  - graphql (on hold / testing...)
