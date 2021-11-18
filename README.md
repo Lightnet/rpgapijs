@@ -8,6 +8,7 @@
 # Stage Dev:
 - Idea design
 - Prototype build.
+- Unstable files structs and folders
 
 # Created By: Lightnet
 
@@ -23,12 +24,72 @@
 # Informtion:
   To create simple role playing game with text and 2D image.
 
-  By using nextjs with react built in to create simple user interface. To build local pc for users.
+  By using Next.js with React.js built in to create simple user interface. To build local pc for users.
+
+# TO DO LIST:
+- Game
+  - logic
+    - battle
+    - produce
+    - factory
+    - guild
+    - crafting
+
+  - battle
+    - turn base (simple)
+
+  - ui
+    - battle area (simple)
+    - map (work in progress)
+    - character (simple)
+    - inventory (simple)
+    - skills (not added)
+    - homebase (not added)
+
+- Character
+  - create player (work in progres)
+
+- Game Master
+  - ui (work in progress)
+    - ...
+
+  - zone
+    - create (added)
+    - delete (added)
+    - list (added)
+
+  - map 
+    - create (added)
+    - delete (added)
+    - list (added)
+
+  - map game object
+    - create (n/a)
+    - delete (n/a)
+    - list (n/a)
+
+  - battle
+    - create (n/a)
+    - delete (n/a)
+    - list (n/a)
+  - creature
+    - create (n/a)
+    - delete (n/a)
+    - list (n/a)
+
+## Notes:
+- unstable files
+- testing
+- a lot place holder files
+- ...
+
+# Game Master Section:
+  To develop rpg that require game master tools to with create the world with it.
 
 # Builds:
-- browser (work in progress)
-- desktop (work in progress)
-- mobile (not build)
+- Browser (work in progress)
+- Desktop (work in progress)
+- Mobile (not build)
 
 ## Notes:
 - Work in progress packages trying to keep simple but depend on the builds and testing...
@@ -37,10 +98,10 @@
 - next (server / prerender react for client / components)
 - next-auth (auth checks)
 - react (client browser)
-- uuid (gen id's)
 - nanoid (gen id's)
 - mongoose (graph database)
 ## Not used:
+- uuid (gen id's)
 - prisma (database helper)
 - gun (database)
 - react-dom (client browser)

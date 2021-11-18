@@ -3,19 +3,23 @@
   Created by: Lightnet
 */
 
-import { useSession } from "next-auth/react";
+//import { useSession } from "next-auth/react";
 import { useEffect, useState } from 'react';
-import GameMasterMap from "./gamemastermap";
+import useFetch from '../../hook/usefetch';
 
 export default function MapSection() {
 
-  const {data: session, status} = useSession();
+  //const {data: session, status} = useSession();
 
+  useEffect(()=>{
+    //getMap()
+  });
 
-
+  async function getMap(){
+    let data = await useFetch('api/map');
+  }
 
   return (<>
-    <GameMasterMap></GameMasterMap>
     <div>Map...</div>
   </>);
 }

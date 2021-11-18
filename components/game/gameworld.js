@@ -12,21 +12,22 @@ import { useEffect, useState } from 'react';
 import RPGMap from "./map/mapsection";
 import RPGExplore from "./map/explore";
 import RPGBattleSection from "./battle/battlesection";
-import RPGHomeBase from "./location/homebase";
-import RPGOutpost from "./location/outpost";
+import RPGHomeBase from "./place/homebase/homebase";
+import RPGOutpost from "./place/outpost/outpost";
 
 //panel
 import RPGCharacterStatus from "./entity/character/characterstatus";
 import RPGInventory from "./item/inventory/inventorysection";
 import RPGStoragePanel from "./item/storage/storage";
-import RPGSkillsPanel from "./skills/skillspanel";
+import RPGSkillSection from "./skills/skillsection";
 
 import Modal from "../ui/emodal";
 import ModalWindow from "../ui/edragwindow";
+import GameMasterSection from "../gamemaster/gamemastersection";
 
 export default function Component() {
 
-  const {data: session, status} = useSession();
+  const { status} = useSession();
 
   const [view, setView] = useState("map");
 
@@ -40,9 +41,9 @@ export default function Component() {
 
   const [isModalWindow, setIsModalWindow] = useState(false);
 
-  useEffect(()=>{
-    console.log("status:",status);
-  },[status]);
+  //useEffect(()=>{
+    //console.log("status:",status);
+  //},[status]);
 
   //watch change for view
   useEffect(()=>{
@@ -71,7 +72,7 @@ export default function Component() {
     }else if(view == "character"){
       return <RPGCharacterStatus></RPGCharacterStatus>
     }else if(view == "skills"){
-      return <RPGSkillsPanel></RPGSkillsPanel>
+      return <RPGSkillSection></RPGSkillSection>
     }else if(view == "inventory"){
       return <RPGInventory></RPGInventory>
     }else if(view == "storage"){
@@ -131,6 +132,8 @@ export default function Component() {
         >
           <p>Some text in the Modal..</p>
         </Modal>
+
+        <GameMasterSection></GameMasterSection>
       </div>
     </div>
     </>);

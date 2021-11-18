@@ -7,7 +7,6 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from 'react';
 
 import { ItemType } from "../../../../lib/game/item";
-import GMItems from "../../../gamemaster/item/items";
 
 export default function Inventory() {
 
@@ -34,8 +33,6 @@ export default function Inventory() {
   function Itemused(){
 
   }
-
-  
 
   async function deleteItem(id){
     if(!id){
@@ -66,7 +63,6 @@ export default function Inventory() {
 
   return (<>
     <div>
-      <GMItems />
       <div>Inventory  </div>
       <div>
         <table>

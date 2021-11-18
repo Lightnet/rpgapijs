@@ -8,10 +8,8 @@ import { useEffect, useState } from 'react';
 
 export default function Component() {
   //const {data: session, status} = useSession();
-  const [rawType, setRawType] = useState("Ore");
-
 
   return (<>
-    <div>Mine?</div>
+    <div>building</div>
   </>);
 }

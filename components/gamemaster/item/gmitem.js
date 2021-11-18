@@ -5,7 +5,7 @@
 
 import { useEffect, useState } from 'react';
 
-export default function AdminItems() {
+export default function GMItem() {
 
   async function createItem(){
     let res = await fetch('api/inventory',{
@@ -27,6 +27,6 @@ export default function AdminItems() {
   }
 
   return (<>
-  [GM] <button onClick={createItem}> Create Item </button>
+    <button onClick={createItem}> Create Item </button>
   </>);
 }

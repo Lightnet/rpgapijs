@@ -7,7 +7,7 @@
 // https://next-auth.js.org/tutorials/securing-pages-and-api-routes
 // https://next-auth.js.org/configuration/options
 
-//import { getCsrfToken } from "next-auth/react";
+import { getCsrfToken } from "next-auth/react";
 import db from "../../lib/database";
 
 //var secret = process.env.SECRET || "secret";
@@ -15,7 +15,7 @@ import db from "../../lib/database";
 export default async (req, res)=>{
   console.log("[[[=== SIGN IN ===]]]");
 
-  //const csrfToken1 = await getCsrfToken({ req}); 
+  const csrfToken1 = await getCsrfToken({ req}); 
   //console.log("csrfToken1: ",csrfToken1);
   //const csrfToken2 = await getCsrfToken();
   //console.log("csrfToken2: ",csrfToken2);
