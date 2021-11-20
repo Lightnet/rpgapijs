@@ -24,7 +24,7 @@ export default async (req, res) => {
   //console.log(userid);
   //console.log(username);
   if(error){
-    return res.json({message:"FAIL"});
+    return res.json({error:"FAIL"});
   }
 
   const Inventory = db.model('Inventory');
@@ -37,7 +37,7 @@ export default async (req, res) => {
     //console.log(inventorys)
     //check inventory if exist
     if(inventorys.length == 0){
-      return res.json({message:"NOINVENTORY"});
+      return res.json({action:"NOINVENTORY"});
     }
 
     if(inventorys.length >= 1){
@@ -46,7 +46,7 @@ export default async (req, res) => {
   }
 
   if(req.method == 'POST'){
-    let data = JSON.parse(req.body);
+    let data = req.body;
     if(data.action){
       if(data.action=='CREATE'){
 

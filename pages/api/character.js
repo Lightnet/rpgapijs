@@ -23,7 +23,7 @@ export default async (req, res) => {
   //console.log(userid);
   //console.log(username);
   if(error){
-    return res.json({message:"FAIL"});
+    return res.json({error:"FAIL"});
   }
 
   const Character = db.model('Character');
@@ -34,7 +34,7 @@ export default async (req, res) => {
     //console.log(characters)
     //check character if exist
     if(characters.length == 0){
-      return res.json({message:"NOTFOUND"});
+      return res.json({action:"NOTFOUND"});
     }
 
     if(characters.length >= 1){
@@ -42,10 +42,11 @@ export default async (req, res) => {
       if(action !=null){
         if(action == "characterdata"){
           console.log("FOUND CHAR DATA ACTION");
-          return res.json({message:"FOUND",data:JSON.parse(characters[0].data)});
+          return res.json({action:"FOUND",data:JSON.parse(characters[0].data)});
         }
+      }else{
+        return res.json({action:"FOUND"});
       }
-      return res.json({message:"FOUND"});
     }
   }
 
@@ -53,7 +54,7 @@ export default async (req, res) => {
     let Characters = await Character.find({userid:userid}).exec();
     //prevent adding more character need to chenage it later...
     if(Characters.length== 0){
-      let chardata = JSON.parse(req.body);
+      let chardata = req.body;
       let characterid = nanoid32();
       //create data
       let playercharacter = new Creature({
@@ -74,13 +75,13 @@ export default async (req, res) => {
 
       try{
         let saveCharacter = await newcharacter.save();
-        return res.json({message:"CREATED",character:saveCharacter});
+        return res.json({action:"CREATED",character:saveCharacter});
       }catch(e){
-        return res.json({message:"FAIL"});
+        return res.json({error:"FAIL"});
       }
     }
   }
 
   //res.end();
-  return res.json({message:"NOTFOUND"});
+  return res.json({error:"NOTFOUND"});
 };

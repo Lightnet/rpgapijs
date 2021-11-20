@@ -15,6 +15,9 @@ export default function GameMasterSection() {
 
   useEffect(()=>{
     console.log("init Game master!")
+    return ()=>{
+      console.log('CLEAN UP GM TOOLS');
+    }
   });
 
   function renderView(){

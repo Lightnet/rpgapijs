@@ -16,6 +16,7 @@ import Link from 'next/link';
 import GameWorld from "../components/game/gameworld";
 import CharacterCreation from "../components/game/entity/character/charactercreation";
 import AuthAccess from '../components/system/authaccess';
+import useFetch from '../components/hook/usefetch';
 
 export default function Game() {
   const { data: session, status } = useSession();
@@ -29,14 +30,17 @@ export default function Game() {
 
   //mount once
   useEffect(async()=>{
-    const response = await fetch('api/character');
-    const data = await response.json();
-    //console.log("data: ",data)
-    if(data.message == "NOTFOUND"){
+    const data = await useFetch('api/character');
+    console.log("data: ",data)
+    if(data.error){
+      console.log('Fetch Error GET Character');
+      return;
+    }
+    if(data.action == "NOTFOUND"){
       setCharacterExist(false);
       setIsLoading(false)
     }
-    if(data.message == "FOUND"){
+    if(data.action == "FOUND"){
       setCharacterExist(true);
       setIsLoading(false)
     }

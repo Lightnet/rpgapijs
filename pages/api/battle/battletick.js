@@ -72,5 +72,5 @@ export default async (req, res) => {
 
   //finish server api
   //res.end();
-  return res.json({message:"NOTFOUND"});
+  return res.json({error:"NOTFOUND"});
 }

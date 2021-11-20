@@ -38,8 +38,8 @@ export default function Component() {
   const [isSkillsPanel, setIsSkillsPanel] = useState(false);
 
   const [isOpenModal, setIsOpenModal] = useState(false);
-
   const [isModalWindow, setIsModalWindow] = useState(false);
+  const [isGMWindow, setIsGMWindow] = useState(true);
 
   //useEffect(()=>{
     //console.log("status:",status);
@@ -61,6 +61,10 @@ export default function Component() {
 
   function closeModal(){
     setIsOpenModal(false);
+  }
+
+  function toggleGMWindow(){
+    setIsGMWindow(state=>!state);
   }
 
   function ViewRender(){
@@ -96,6 +100,7 @@ export default function Component() {
     return (<>
     <div>
       <div>
+      <button onClick={()=>toggleGMWindow()}>GM</button>
         <button onClick={()=>btnAction("map")}>Map</button>
         <button onClick={()=>btnAction("battle")}>Battle</button>
         <button onClick={()=>btnAction("character")}>Character</button>
@@ -132,8 +137,8 @@ export default function Component() {
         >
           <p>Some text in the Modal..</p>
         </Modal>
-
-        <GameMasterSection></GameMasterSection>
+        {isGMWindow && <GameMasterSection></GameMasterSection>}
+        
       </div>
     </div>
     </>);

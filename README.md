@@ -22,7 +22,7 @@
 - VScode (Optional)
 
 # Informtion:
-  To create simple role playing game with text and 2D image.
+  To create simple role playing game with text and 2D image. But required some tool by create game master tool and other things to create the world around the zone and map system to build some sort of plane worlds.
 
   By using Next.js with React.js built in to create simple user interface. To build local pc for users.
 

@@ -47,7 +47,7 @@ export default function Component({CreatedExist}) {
     });
     const data = await response.json();
     console.log("data: ",data)
-    if(data.message == "CREATED"){
+    if(data.action == "CREATED"){
       setIsCreated(true);
       CreatedExist(true);
     }

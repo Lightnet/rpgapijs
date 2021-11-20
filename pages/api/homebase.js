@@ -18,7 +18,7 @@ export default async (req, res) => {
   //console.log(userid);
   //console.log(username);
   if(error){
-    return res.json({message:"FAIL"});
+    return res.json({error:"FAIL"});
   }
 
   if(req.method == 'GET'){

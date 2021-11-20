@@ -79,7 +79,7 @@ export default async (req, res) => {
   }
 
   if(req.method == 'POST'){
-    let data = JSON.parse(req.body);
+    let data = req.body;
     console.log(data);
     if(data.action){
       if(data.action == 'RANDOMBATTLE'){
@@ -206,5 +206,5 @@ export default async (req, res) => {
   }
   //finish server api
   //res.end();
-  return res.json({message:"NOTFOUND"});
+  return res.json({error:"NOTFOUND"});
 }

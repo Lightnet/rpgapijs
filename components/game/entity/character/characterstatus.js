@@ -6,6 +6,7 @@
 
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from 'react';
+import useFetch from "../../../hook/usefetch"
 
 export default function Component() {
   const {data: session, status} = useSession();
@@ -25,15 +26,19 @@ export default function Component() {
 
   async function checkCharacterData(){
     console.log("checking....");
-    const response = await fetch('api/character?action=characterdata',{
+    const data = await useFetch('api/character?action=characterdata',{
       method:'GET'
     });
-    const data = await response.json();
     console.log("data: ",data)
-    if(data.message == "NOTFOUND"){
+    if(data.error){
+      console.log('Fetch Error GET Character')
+      return;
+    }
+    
+    if(data.action == "NOTFOUND"){
       //setCharacterExist(true);
     }
-    if(data.message == "FOUND"){
+    if(data.action == "FOUND"){
       //setCharacterExist(true);
       console.log(data);
       setCharacterData(data.data);
