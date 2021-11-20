@@ -9,17 +9,16 @@ import { useEffect, useState } from 'react';
 //import Creature from "../../lib/game/creature";
 
 //viusal scene
-import RPGMap from "./map/mapsection";
-import RPGExplore from "./map/explore";
-import RPGBattleSection from "./battle/battlesection";
-import RPGHomeBase from "./place/homebase/homebase";
-import RPGOutpost from "./place/outpost/outpost";
+import MapSection from "./map/mapsection";
+import BattleSection from "./battle/battlesection";
+import HomeBase from "./place/homebase/indexsection";
+import Outpost from "./place/outpost/outpost";
 
 //panel
-import RPGCharacterStatus from "./entity/character/characterstatus";
+import CharacterStatus from "./entity/character/characterstatus";
 import RPGInventory from "./item/inventory/inventorysection";
 import RPGStoragePanel from "./item/storage/storage";
-import RPGSkillSection from "./skills/skillsection";
+import SkillSection from "./skills/skillsection";
 
 import Modal from "../ui/emodal";
 import ModalWindow from "../ui/edragwindow";
@@ -39,7 +38,7 @@ export default function Component() {
 
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isModalWindow, setIsModalWindow] = useState(false);
-  const [isGMWindow, setIsGMWindow] = useState(true);
+  const [isGMWindow, setIsGMWindow] = useState(false);
 
   //useEffect(()=>{
     //console.log("status:",status);
@@ -68,30 +67,29 @@ export default function Component() {
   }
 
   function ViewRender(){
-    console.log("battle...");
     if(view == "battle"){
-      return <RPGBattleSection></RPGBattleSection>
+      return <BattleSection></BattleSection>
     }else if(view == "map"){
-      return <RPGMap></RPGMap>
+      return <MapSection></MapSection>
     }else if(view == "character"){
-      return <RPGCharacterStatus></RPGCharacterStatus>
+      return <CharacterStatus></CharacterStatus>
     }else if(view == "skills"){
-      return <RPGSkillSection></RPGSkillSection>
+      return <SkillSection></SkillSection>
     }else if(view == "inventory"){
       return <RPGInventory></RPGInventory>
     }else if(view == "storage"){
       return <RPGStoragePanel></RPGStoragePanel>
     }else if(view == "homebase"){
-      return <RPGHomeBase></RPGHomeBase>
+      return <HomeBase></HomeBase>
     }else if(view == "outpost"){
-      return <RPGOutpost></RPGOutpost>
+      return <Outpost></Outpost>
     }else{
-      console.log("other scene...");
+      console.log("other view...");
       return <label>[ work in progress! ] Loading...</label>
     }
   }
 
-  function btnAction(tag){
+  function btnView(tag){
     console.log("action: ",tag);
     setView(tag);
   }
@@ -101,16 +99,18 @@ export default function Component() {
     <div>
       <div>
       <button onClick={()=>toggleGMWindow()}>GM</button>
-        <button onClick={()=>btnAction("map")}>Map</button>
-        <button onClick={()=>btnAction("battle")}>Battle</button>
-        <button onClick={()=>btnAction("character")}>Character</button>
-        <button onClick={()=>btnAction("skills")}>Skills</button>
-        <button onClick={()=>btnAction("inventory")}>Inventory</button>
-        <button onClick={()=>btnAction("storage")}>Storage</button>
-        <button onClick={()=>btnAction("homebase")}>HomeBase</button>
-        <button onClick={()=>btnAction("outpost")}>Outpost</button>
+        <button onClick={()=>btnView("map")}>Map</button>
+        <button onClick={()=>btnView("battle")}>Battle</button>
+        <button onClick={()=>btnView("character")}>Character</button>
+        <button onClick={()=>btnView("inventory")}>Inventory</button>
+        <button onClick={()=>btnView("homebase")}>HomeBase</button>
 
+        {/*
+        <button onClick={()=>btnView("skills")}>Skills</button>
+        <button onClick={()=>btnView("storage")}>Storage</button>
+        <button onClick={()=>btnView("outpost")}>Outpost</button>
         <button onClick={()=>openModal()}>Modal</button>
+        */}
       </div>
       <div style={{
         height:"480px"
@@ -149,8 +149,5 @@ export default function Component() {
   </>);
 }
 /*
-
-
-
 
 */

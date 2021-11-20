@@ -7,7 +7,7 @@
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from 'react';
 
-export default function HomeBase() {
+export default function Construction() {
 
   useEffect(() => {
     getHomeBaseObjects();
@@ -22,7 +22,7 @@ export default function HomeBase() {
 
   return (<>
     <div>
-      <label>Home</label>
+      <label>Construction</label>
     </div>
   </>);
 }
