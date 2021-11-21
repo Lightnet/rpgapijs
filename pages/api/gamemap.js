@@ -60,5 +60,5 @@ export default async (req, res) => {
     return res.json({action:"DELETE",id:data.id});
   }
   //res.end();
-  return res.json({action:"NOTFOUND"});
+  return res.json({error:"NOTFOUND"});
 };
