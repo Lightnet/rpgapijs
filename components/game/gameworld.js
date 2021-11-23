@@ -47,6 +47,11 @@ export default function Component() {
 
   function ops(args){
     console.log('custom event!');
+    console.log(args);
+    console.log(args.target.view);
+    if(args.detail.view){
+      btnView(args.detail.view);
+    }
   }
 
   //watch change for view

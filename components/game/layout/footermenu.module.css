@@ -4,3 +4,15 @@
   left:0px;
   width:100%;
 }
+
+.dropdown:hover {
+  background-color: red;
+}
+
+.dropdowncontent {
+  display: none;
+}
+
+.dropdown:hover .dropdowncontent {
+  display: block;
+}
