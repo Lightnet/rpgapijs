@@ -3,8 +3,8 @@
   Created by: Lightnet
 */
 
-import { getCsrfToken, getSession } from "next-auth/react";
-import db,{ sessionTokenCheck } from "../../lib/database";
+import { getSession } from "next-auth/react";
+import clientDB,{ sessionTokenCheck } from "../../lib/database";
 import { nanoid16 } from "../../lib/helper";
 
 export default async (req, res) => {
@@ -20,6 +20,7 @@ export default async (req, res) => {
   if(error){
     return res.json({error:"FAIL"});
   }
+  const db = await clientDB();
   const GameMap = db.model('GameMap');
   
   if(req.method == 'GET'){

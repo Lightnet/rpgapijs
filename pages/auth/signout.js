@@ -22,7 +22,7 @@ export default function SignOut() {
     <center>
       <label>Are you sure to sign out?</label>
       <br />
-      <Link href="/">Home</Link> <button onClick={() => signOut()}>Sign out</button>
+      <Link href="/">Home</Link> <span> | </span> <Link href="/game">Game</Link> <button onClick={() => signOut()}>Sign out</button>
     </center>
     </>)
   }

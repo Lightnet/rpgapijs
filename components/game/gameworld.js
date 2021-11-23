@@ -5,24 +5,23 @@
 
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from 'react';
-
 //import Creature from "../../lib/game/creature";
-
 //viusal scene
 import MapSection from "./map/mapsection";
 import BattleSection from "./battle/battlesection";
 import HomeBase from "./place/homebase/indexsection";
 import Outpost from "./place/outpost/outpost";
-
 //panel
 import CharacterStatus from "./entity/character/characterstatus";
 import RPGInventory from "./item/inventory/inventorysection";
 import RPGStoragePanel from "./item/storage/storage";
 import SkillSection from "./skills/skillsection";
-
+// UI
+//import ModalWindow from "../ui/edragwindow";
 import Modal from "../ui/emodal";
-import ModalWindow from "../ui/edragwindow";
 import GameMasterSection from "../gamemaster/gamemastersection";
+import FooterMenu from "./layout/footermenu";
+import useEvent from "../hook/useEvent";
 
 export default function Component() {
 
@@ -43,6 +42,12 @@ export default function Component() {
   //useEffect(()=>{
     //console.log("status:",status);
   //},[status]);
+
+  useEvent('api',ops);
+
+  function ops(args){
+    console.log('custom event!');
+  }
 
   //watch change for view
   useEffect(()=>{
@@ -98,13 +103,12 @@ export default function Component() {
     return (<>
     <div>
       <div>
-      <button onClick={()=>toggleGMWindow()}>GM</button>
+        <button onClick={()=>toggleGMWindow()}>GM</button>
         <button onClick={()=>btnView("map")}>Map</button>
         <button onClick={()=>btnView("battle")}>Battle</button>
         <button onClick={()=>btnView("character")}>Character</button>
         <button onClick={()=>btnView("inventory")}>Inventory</button>
         <button onClick={()=>btnView("homebase")}>HomeBase</button>
-
         {/*
         <button onClick={()=>btnView("skills")}>Skills</button>
         <button onClick={()=>btnView("storage")}>Storage</button>
@@ -112,33 +116,15 @@ export default function Component() {
         <button onClick={()=>openModal()}>Modal</button>
         */}
       </div>
-      <div style={{
-        height:"480px"
-        , width:"800px"
-        , borderStyle:"solid"
-        }}>
-
+      <div style={{height:"480px", width:"800px", borderStyle:"solid"}}>
         {ViewRender()}
       </div>
       <div>
-        {/*
-        <ModalWindow
-          title="window"
-         >
-          <p>Move</p>
-          <p>this</p>
-          <p>DIV</p>
-        </ModalWindow>
-        */}
-
-        <Modal
-          isOpen={isOpenModal}
-          closeModal={closeModal}
-        >
+        <Modal isOpen={isOpenModal} closeModal={closeModal} >
           <p>Some text in the Modal..</p>
         </Modal>
         {isGMWindow && <GameMasterSection></GameMasterSection>}
-        
+        <FooterMenu></FooterMenu>
       </div>
     </div>
     </>);

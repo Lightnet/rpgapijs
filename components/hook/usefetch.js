@@ -2,6 +2,7 @@
   LICENSE: MIT
   Created by: Lightnet
 */
+
 // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
 // https://javascript.info/fetch
 // https://github.github.io/fetch/
@@ -22,11 +23,10 @@ export default async function useFetch(url,args){
   if(args.method == 'GET'){
     //console.log('GET!!');
     args.headers = {};
-    args.body = null; //set to null for GET since is never allow
   }else{
     args.headers = args.headers || {"Content-Type": "application/json"};
-    args.body = args.body || null;
   }
+  args.body = args.body || null;
 
   try{
     let response = await fetch(url, args);

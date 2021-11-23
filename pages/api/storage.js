@@ -3,9 +3,9 @@
   Created by: Lightnet
 */
 
-import { getCsrfToken, getSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
 //import { nanoid32 } from "../../lib/helper";
-import db,{ sessionTokenCheck } from "../../lib/database";
+import clientDB,{ sessionTokenCheck } from "../../lib/database";
 
 export default async (req, res) => {
   console.log("[[[=== STORAGE ===]]]");
@@ -20,6 +20,8 @@ export default async (req, res) => {
   if(error){
     return res.json({error:"FAIL"});
   }
+
+  const db = await clientDB();
 
   //const Character = db.model('Character');
   if(req.method == 'GET'){

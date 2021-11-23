@@ -7,10 +7,10 @@
 //import { PrismaClient } from '@prisma/client';
 //import {clientDB} from '../db';
 //import { v4 as uuidv4 } from 'uuid';
-import { getCsrfToken, getSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
 import Creature from "../../lib/game/creature";
 import { nanoid32 } from "../../lib/helper";
-import db,{ sessionTokenCheck } from "../../lib/database";
+import clientDB,{ sessionTokenCheck } from "../../lib/database";
 
 export default async (req, res) => {
   console.log("[[[=== CHARACTER ===]]]");
@@ -26,6 +26,7 @@ export default async (req, res) => {
     return res.json({error:"FAIL"});
   }
 
+  const db = await clientDB();
   const Character = db.model('Character');
 
   if(req.method == 'GET'){

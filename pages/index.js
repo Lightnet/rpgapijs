@@ -17,6 +17,7 @@ import { useSession } from "next-auth/react";
 import Sign from "../components/system/sign";
 import Link from 'next/link';
 import AuthAccess from "../components/system/authaccess";
+import ThemeSection from "../components/system/themesection";
 
 export default function Page() {
   const { data: session } = useSession()
@@ -30,7 +31,7 @@ export default function Page() {
   return (<>
     <AuthAccess>
       <Sign></Sign>
-      <label> Signed in as {session?.user.name} </label>
+      <label> Signed in as {session?.user.name} </label> <span> | </span> <ThemeSection></ThemeSection>
       <br />
       <Link href='/game'>Game</Link>
     </AuthAccess>

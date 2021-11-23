@@ -3,8 +3,8 @@
   Created by: Lightnet
 */
 
-import { getCsrfToken, getSession } from "next-auth/react";
-import db,{ sessionTokenCheck } from "../../lib/database";
+import { getSession } from "next-auth/react";
+import clientDB,{ sessionTokenCheck } from "../../lib/database";
 
 export default async (req, res) => {
   console.log("[[[=== HOMEBASE ===]]]");
@@ -21,6 +21,7 @@ export default async (req, res) => {
     return res.json({error:"FAIL"});
   }
 
+  const db = await clientDB();
   const HomeBase = db.model('HomeBase');
 
   if(req.method == 'GET'){
@@ -39,7 +40,8 @@ export default async (req, res) => {
     let data = req.body;
     let newHomeBase = new HomeBase({
       userid:userid,
-      name:data.name
+      name:data.name,
+      ismain:true
     });
     let saveHomeBase = await newHomeBase.save();
     return res.json({action:"HOMEBASE",homebase:saveHomeBase});

@@ -8,6 +8,7 @@ import { useSession, signOut, signIn } from "next-auth/react";
 import Link from 'next/link';
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import ThemeSection from "./themesection";
 
 export default function Sign() {
   const [signInPath,setSignInPath ] = useState(null)
@@ -44,7 +45,7 @@ export default function Sign() {
   }
   
   return (<>
-    <Link href={signInPath}>Sign in</Link> <Link href="/auth/signup">Sign Up</Link>
+    <Link href={signInPath}>Sign in</Link> <Link href="/auth/signup">Sign Up</Link> <ThemeSection></ThemeSection>
   </>);
 }
 /*

@@ -8,7 +8,7 @@
 // https://next-auth.js.org/configuration/options
 
 import { getCsrfToken } from "next-auth/react";
-import db from "../../lib/database";
+import clientDB from "../../lib/database";
 
 //var secret = process.env.SECRET || "secret";
 
@@ -27,6 +27,8 @@ export default async (req, res)=>{
   if(req.method !== 'POST'){
     return res.status(405).json({error:'Method not allowed!'});
   }
+
+  const db = await clientDB();
   const User = db.model('User');
   
   console.log("req.body");

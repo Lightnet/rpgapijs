@@ -7,14 +7,22 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from 'react';
 
 import { ItemType } from "../../../../lib/game/item";
+import { useInventory } from "../../gameprovider";
 
 export default function Inventory() {
 
   const {data: session, status} = useSession();
   const [items, setItems] = useState([]);
 
+  const [inventory, setInventory] = useInventory();
+
   useEffect(()=>{
     console.log(ItemType);
+    //setInventory([])
+    console.log(typeof setInventory)
+    setInventory([])
+    console.log(typeof inventory)
+    console.log(inventory)
     getInventory();
   },[])
 

@@ -4,16 +4,13 @@
 */
 
 
-import { useSession } from "next-auth/react";
+//import { useSession } from "next-auth/react";
 import { useEffect, useState } from 'react';
 
 export default function Component() {
-  const {data: session, status} = useSession();
+  //const {data: session, status} = useSession();
 
-
-
-  
   return (<>
-    <div>Loading...</div>
+    <div> blank </div>
   </>);
 }

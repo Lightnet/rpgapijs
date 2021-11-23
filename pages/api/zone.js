@@ -5,7 +5,7 @@
 
 import { getCsrfToken, getSession } from "next-auth/react";
 import { nanoid16 } from "../../lib/helper";
-import db,{ sessionTokenCheck } from "../../lib/database";
+import clientDB,{ sessionTokenCheck } from "../../lib/database";
 
 export default async (req, res) => {
   console.log("[[[=== ZONE ===]]]");
@@ -14,14 +14,16 @@ export default async (req, res) => {
   const session = await getSession({ req });
 
   let {error, userid, username} = await sessionTokenCheck(session);
-  console.log(error);
-  console.log(userid);
-  console.log(username);
+  //console.log(error);
+  //console.log(userid);
+  //console.log(username);
   if(error){
     return res.json({error:"FAIL"});
   }
 
+  const db = await clientDB();
   const Zone = db.model('Zone');
+
   if(req.method == 'GET'){
     let zones = await Zone.find().exec();
     return res.json({action:"ZONES",zones:zones});

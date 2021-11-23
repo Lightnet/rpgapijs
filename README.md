@@ -26,6 +26,19 @@
 
   By using Next.js with React.js built in to create simple user interface. To build local pc for users.
 
+
+# Design Game:
+  To create home base space dimension. The user is throw in another world which he/she can chose which path to play. It either solo or recruit creatures or built units.
+
+## Plan idea:
+- Build some free movement base tick to server move per square.
+- create random dungeon.
+- 
+
+## Zones:
+  To random generate worlds.
+
+
 # TO DO LIST:
 - Game
   - logic

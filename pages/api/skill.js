@@ -3,8 +3,8 @@
   Created by: Lightnet
 */
 
-import { getCsrfToken, getSession } from "next-auth/react";
-import db,{ sessionTokenCheck } from "../../lib/database";
+import { getSession } from "next-auth/react";
+import clientDB,{ sessionTokenCheck } from "../../lib/database";
 
 export default async (req, res) => {
   console.log("[[[=== SKILL ===]]]");
@@ -19,6 +19,8 @@ export default async (req, res) => {
   if(error){
     return res.json({error:"FAIL"});
   }
+
+  const db = await clientDB();
 
   if(req.method == 'GET'){
 

@@ -1,4 +1,7 @@
-
+/*
+  LICENSE: MIT
+  Created by: Lightnet
+*/
 
 //https://atomizedobjects.com/blog/javascript/develop-2d-javascript-games-html5-react/
 

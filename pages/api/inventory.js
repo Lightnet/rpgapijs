@@ -3,10 +3,10 @@
   Created by: Lightnet
 */
 
-import { getCsrfToken, getSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
 //import Creature from "../../lib/game/creature";
 //import { nanoid32 } from "../../lib/helper";
-import db,{ sessionTokenCheck,testCall } from "../../lib/database";
+import clientDB,{ sessionTokenCheck,testCall } from "../../lib/database";
 
 export default async (req, res) => {
   console.log("[[[=== INVENTORY ===]]]");
@@ -27,6 +27,7 @@ export default async (req, res) => {
     return res.json({error:"FAIL"});
   }
 
+  const db = await clientDB();
   const Inventory = db.model('Inventory');
 
   //const Character = db.model('Character');
