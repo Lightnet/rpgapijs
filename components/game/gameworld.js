@@ -22,8 +22,9 @@ import Modal from "../ui/emodal";
 import GameMasterSection from "../gamemaster/gamemastersection";
 import FooterMenu from "./layout/footermenu";
 import useEvent from "../hook/useEvent";
+import EWindow from "../ui/ewindow";
 
-export default function Component() {
+export default function GameWorld() {
 
   const { status} = useSession();
 
@@ -38,6 +39,18 @@ export default function Component() {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isModalWindow, setIsModalWindow] = useState(false);
   const [isGMWindow, setIsGMWindow] = useState(false);
+
+
+  const [inventoryPos, setInventoryPos] = useState([0,0]);
+  const [characterPos, setCharacterPos] = useState([0,0]);
+
+  function updateInventoryPos(pos){
+    setInventoryPos(pos);
+  }
+
+  function updateCharacterPos(pos){
+    setCharacterPos(pos);
+  }
 
   //useEffect(()=>{
     //console.log("status:",status);
@@ -82,11 +95,11 @@ export default function Component() {
     }else if(view == "map"){
       return <MapSection></MapSection>
     }else if(view == "character"){
-      return <CharacterStatus></CharacterStatus>
+      //return <CharacterStatus></CharacterStatus>
     }else if(view == "skills"){
       return <SkillSection></SkillSection>
     }else if(view == "inventory"){
-      return <RPGInventory></RPGInventory>
+      //return <RPGInventory></RPGInventory>
     }else if(view == "storage"){
       return <RPGStoragePanel></RPGStoragePanel>
     }else if(view == "homebase"){
@@ -104,15 +117,31 @@ export default function Component() {
     setView(tag);
   }
 
+  function showCharacterPanel(){
+    setIsCharacterPanel(true);
+  }
+
+  function closeCharacterPanel(){
+    setIsCharacterPanel(false);
+  }
+
+  function showInventory(){
+    setIsInventoryPanel(true);
+  }
+
+  function closeInventory(){
+    setIsInventoryPanel(false);
+  }
+
   if (status === "authenticated") {
     return (<>
-    <div>
+    <div style={{height:'100%', width:'100%'}}>
       <div>
         <button onClick={()=>toggleGMWindow()}>GM</button>
         <button onClick={()=>btnView("map")}>Map</button>
         <button onClick={()=>btnView("battle")}>Battle</button>
-        <button onClick={()=>btnView("character")}>Character</button>
-        <button onClick={()=>btnView("inventory")}>Inventory</button>
+        <button onClick={()=>showCharacterPanel()}>Character</button>
+        <button onClick={()=>showInventory()}>Inventory</button>
         <button onClick={()=>btnView("homebase")}>HomeBase</button>
         {/*
         <button onClick={()=>btnView("skills")}>Skills</button>
@@ -121,7 +150,7 @@ export default function Component() {
         <button onClick={()=>openModal()}>Modal</button>
         */}
       </div>
-      <div style={{height:"480px", width:"800px", borderStyle:"solid"}}>
+      <div style={{height:'100%', width:'100%'}}>
         {ViewRender()}
       </div>
       <div>
@@ -129,6 +158,37 @@ export default function Component() {
           <p>Some text in the Modal..</p>
         </Modal>
         {isGMWindow && <GameMasterSection></GameMasterSection>}
+
+
+
+        {isCharacterPanel &&
+          <EWindow
+            title="Character"
+            pheight="380"
+            pos={characterPos}
+            closeWindow={closeCharacterPanel}
+            updatePos={updateCharacterPos}
+          >
+            <CharacterStatus>
+
+            </CharacterStatus>
+          </EWindow>
+        }
+
+        {isInventoryPanel &&
+          <EWindow
+            title="Inventory"
+            pheight="300"
+            pos={inventoryPos}
+            closeWindow={closeInventory}
+            updatePos={updateInventoryPos}
+          >
+            <RPGInventory>
+
+            </RPGInventory>
+          </EWindow>
+        }
+
         <FooterMenu></FooterMenu>
       </div>
     </div>
@@ -140,5 +200,5 @@ export default function Component() {
   </>);
 }
 /*
-
+<div style={{height:"480px", width:"800px", borderStyle:"solid"}}>
 */

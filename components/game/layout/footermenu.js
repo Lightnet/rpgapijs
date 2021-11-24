@@ -31,7 +31,7 @@ export default function FooterMenu() {
 
   return (<>
     <div className={styles.footermenu}>
-      <center>
+      
         <div style={{position:'relative' ,height:'32px',backgroundColor:'gray'}}>
           <div style={{position:'relative' ,height:'32px', width:'300px',backgroundColor:'gray',float:'left'}}>
             <button onClick={()=>dispatch('map')}> Map </button>
@@ -47,10 +47,11 @@ export default function FooterMenu() {
           </div>
           <div style={{position:'relative' ,height:'32px', width:'300px',backgroundColor:'gray',float:'left'}}>
             <button> Options </button>
+            <button> EWindow </button>
             <button> GM </button>
           </div>
         </div>
-      </center>
+      
     </div>
   </>);
 }
