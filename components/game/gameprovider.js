@@ -32,24 +32,32 @@ export function GameProvider(props){
   const [zoneID, setZoneID] = useState('');
   const [mapID, setMapID] = useState('');
 
+  const [homeBaseID, setHomeBaseID] = useState(null);
+
   const [characters, setCharacters] = useState([]);
   const [creatures, setCreatures] = useState([]);
   const [inventory, setInventory] = useState([]);
 
+  const [resource, setResource] = useState([]);
+
   const value = useMemo(()=>({
     user,setUser,
+    homeBaseID, setHomeBaseID,
     zoneID, setZoneID,
     mapID, setMapID,
     characters, setCharacters,
     inventory, setInventory,
-    creatures, setCreatures
+    creatures, setCreatures,
+    resource, setResource
   }),[
     user,
+    homeBaseID,
     zoneID,
     mapID,
     characters,
     inventory,
-    creatures
+    creatures,
+    resource
   ])
 
   return <GameContext.Provider value={value} {...props} />

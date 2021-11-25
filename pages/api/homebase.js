@@ -48,7 +48,19 @@ export default async (req, res) => {
   }
 
   if(req.method == 'PATCH'){
-    
+    let data = req.body;
+    let query={
+      userid:userid,
+      ismain:true
+    }
+    let update={
+      name:data.name
+    }
+
+    let doc = await HomeBase.findOneAndUpdate(query,update,{
+      new: true
+    })
+    return res.json({action:"UPDATE"});
   }
 
   if(req.method == 'DELETE'){

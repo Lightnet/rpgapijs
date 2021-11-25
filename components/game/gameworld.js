@@ -40,7 +40,6 @@ export default function GameWorld() {
   const [isModalWindow, setIsModalWindow] = useState(false);
   const [isGMWindow, setIsGMWindow] = useState(false);
 
-
   const [inventoryPos, setInventoryPos] = useState([0,0]);
   const [characterPos, setCharacterPos] = useState([0,0]);
 
