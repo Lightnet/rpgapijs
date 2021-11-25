@@ -57,7 +57,13 @@
     - character (simple)
     - inventory (simple)
     - skills (not added)
-    - homebase (not added)
+    - homebase ( added / work in progress)
+    - buildtime (added)
+
+  - homebase:
+    - construction (work in progress)
+    - query build (work in progress)
+    - query produce (not build)
 
 - Character
   - create player (work in progres)
