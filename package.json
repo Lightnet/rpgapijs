@@ -15,16 +15,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "classnames": "^2.3.1",
     "dayjs": "^1.10.7",
     "gun": "^0.2020.1235",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.0.13",
-    "nanoid": "^3.1.30",
-    "uuid": "^8.3.2"
+    "mongoose": "^6.2.1",
+    "nanoid": "^3.2.0"
   },
   "devDependencies": {
-    "next": "^12.0.4",
-    "next-auth": "^4.0.0-next.26",
+    "next": "^12.0.10",
+    "next-auth": "^4.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   }

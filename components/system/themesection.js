@@ -5,26 +5,26 @@
 
 //import { getSession } from "next-auth/react";
 import React, {useState, useEffect} from "react";
+import { useTheme } from "../theme/themeprovider";
 
 export default function ThemeSection() {
-  //const [data,setData] = useState
 
-  useEffect(() => {
-    const theme = localStorage.getItem('theme');
-    if(theme){
-      document.documentElement.setAttribute('data-theme', theme);
+  const {theme, setTheme} = useTheme();
+
+  function clickTheme(event){
+    event.preventDefault();
+    //console.log('theme');
+    let currentTheme = theme;
+    let targetTheme = "light";
+
+    if (currentTheme === "light") {
+      targetTheme = "dark";
     }
-  }, []);
+    setTheme(targetTheme);
 
-  function changeTheme(name){
-    document.documentElement.setAttribute('data-theme', name);
-    localStorage.setItem('theme', name);
+    document.documentElement.setAttribute('data-theme', targetTheme)
+    localStorage.setItem('theme', targetTheme);
   }
   
-  return (<>
-    <label> Theme: </label>
-    <a href="#" onClick={()=>changeTheme('light')}> Light </a>
-    <span> | </span>
-    <a href="#" onClick={()=>changeTheme('dark')}> Dark </a>
-  </>);
+  return <a style={{cursor: 'pointer'}} onClick={clickTheme}>Theme {theme}</a>
 }

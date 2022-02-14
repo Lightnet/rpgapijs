@@ -12,8 +12,9 @@ export default function TimeBuild({timedate}) {
   const [timer, setTimer] = useState(null)
 
   useEffect(()=>{
+    
     if(timedate !=null){
-      timer = setInterval(() => {
+        let _timer = setInterval(() => {
         //console.log("hello?");
         let currenttime = unixTime();
         //console.log(currenttime, " >> ", timedate)
@@ -33,9 +34,10 @@ export default function TimeBuild({timedate}) {
         }
         
       }, 1000)
+      setTimer(_timer)
     }
+    
 
-    setTimer(timer)
     return ()=>{
       console.log('CLEAN TIMER..')
       clearInterval(timer);

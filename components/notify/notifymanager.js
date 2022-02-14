@@ -3,16 +3,28 @@
   Created by: Lightnet
 */
 
-// https://stackoverflow.com/questions/59689702/invalid-prop-children-of-type-string-supplied-to-forwardreflistitemicon
+import React,{ useEffect } from "react";
+import { nanoid16 } from "../../lib/helper.js";
+import Notification from "./notification.js";
+import NotifyContainer from "./notifycontainer.js";
+import { useNotifty } from "./notifyprovider.js";
 
-import React, { useEffect, useState } from "react";
-//import PropTypes from 'prop-types';
-import CreateContainer from "./createcontainer";
-import Notification from "./notification";
+export default function NotifyManager(){
 
-export default function NotificationsManager({ setNotify }) {
+  const {
+    notifications
+    , setNotifications
+    , notify
+  } = useNotifty();
 
-  let [notifications, setNotifications] = useState([]);
+  useEffect(()=>{
+    if(notify){//check if variable chanage
+      //console.log('notifty...a');
+      //console.log(notify);
+      let { color, autoClose, children } = notify;
+      createNotification({ color, autoClose, children });
+    }
+  },[notify])
 
   let createNotification = ({ color, autoClose, children }) => {
     setNotifications((prevNotifications) => {
@@ -22,19 +34,12 @@ export default function NotificationsManager({ setNotify }) {
           children,
           color,
           autoClose,
-          id: prevNotifications.length,
+          //id: prevNotifications.length,
+          id:nanoid16()
         },
       ];
     });
   };
-
-  useEffect(() => {
-    if(setNotify){
-      let { color, autoClose, children } = setNotify;
-      console.log(setNotify);
-      createNotification({ color, autoClose, children });
-    }
-  }, [setNotify]);
 
   let deleteNotification = (id) => {
     const filteredNotifications = notifications.filter(
@@ -44,12 +49,11 @@ export default function NotificationsManager({ setNotify }) {
     setNotifications(filteredNotifications);
   };
 
-  return (
-  <CreateContainer>
+  return <NotifyContainer>
     {notifications.map(({ id, ...props }, index) => {
       //console.log(id);
       //console.log(index);
-      console.log(props);
+      //console.log(props);
       //return (<label key={id}>Hello</label>);
       return (
       <Notification
@@ -61,10 +65,7 @@ export default function NotificationsManager({ setNotify }) {
         children={props.children}
       />);
     })}
-  </CreateContainer>
-  );
+  
+  </NotifyContainer>;
 }
 
-//NotificationsManager.propTypes = {
-  //setNotify: PropTypes.func.isRequired,
-//};

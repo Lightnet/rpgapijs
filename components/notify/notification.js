@@ -12,7 +12,7 @@
 //import { createPortal } from "react-dom";
 
 import React, { useEffect, useState } from "react";
-import PropTypes from 'prop-types';
+
 import cn from "classnames";
 import styles from "./notification.module.css";
 
@@ -67,7 +67,7 @@ export const Color = {
   error: "error",
 };
 
-Notification.propTypes = {
-  notificationType: PropTypes.oneOf(Object.keys(Color)),
-  children: PropTypes.element,
-};
+//Notification.propTypes = {
+  //notificationType: PropTypes.oneOf(Object.keys(Color)),
+  //children: PropTypes.element,
+//};

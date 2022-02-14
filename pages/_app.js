@@ -11,6 +11,9 @@ import { useRouter } from "next/router";
 import Loading from "../components/system/loading";
 //import getConfig from 'next/config';
 import "../styles/global.css";
+import { ThemeProvider } from "../components/theme/themeprovider";
+import { NottifyProvider } from "../components/notify/notifyprovider";
+import NotifyManager from "../components/notify/notifymanager";
 //import './styles.css';
 
 // Only holds serverRuntimeConfig and publicRuntimeConfig
@@ -65,8 +68,13 @@ export default function App({Component, pageProps}){
       // Re-fetch session every 5 minutes
       refetchInterval={5 * 60}
       >
-        {isRenderLoading()}
-        <Component {...pageProps} />
+        <ThemeProvider>
+          <NottifyProvider>
+            {isRenderLoading()}
+            <Component {...pageProps} />
+            <NotifyManager />
+          </NottifyProvider>
+        </ThemeProvider>
     </SessionProvider>
   );
 }

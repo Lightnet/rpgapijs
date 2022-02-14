@@ -18,6 +18,7 @@ import Sign from "../components/system/sign";
 import Link from 'next/link';
 import AuthAccess from "../components/system/authaccess";
 import ThemeSection from "../components/system/themesection";
+import NotiftyTest from "../components/notify/notiftytest";
 
 export default function Page() {
   const { data: session } = useSession()
@@ -34,6 +35,7 @@ export default function Page() {
       <label> Signed in as {session?.user.name} </label> <span> | </span> <ThemeSection></ThemeSection>
       <br />
       <Link href='/game'>Game</Link>
+      <NotiftyTest></NotiftyTest>
     </AuthAccess>
   </>)
 }
