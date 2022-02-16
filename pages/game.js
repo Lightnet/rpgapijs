@@ -6,14 +6,14 @@
 */
 
 import AuthAccess from '../components/system/authaccess';
-import { GameProvider } from '../components/game/gameprovider';
-import Game from "../components/game/index";
+import { GameProvider } from '../components/game/gameprovider.js';
+import GameContent from "../components/game/gamecontent.js";
 export default function GamePage() {
 
   return (<>
     <AuthAccess>
       <GameProvider>
-        <Game></Game>
+        <GameContent />
       </GameProvider>
     </AuthAccess>
   </>)

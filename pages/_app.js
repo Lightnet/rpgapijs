@@ -12,7 +12,7 @@ import Loading from "../components/system/loading";
 //import getConfig from 'next/config';
 import "../styles/global.css";
 import { ThemeProvider } from "../components/theme/themeprovider";
-import { NottifyProvider } from "../components/notify/notifyprovider";
+import { NotifyProvider } from "../components/notify/notifyprovider";
 import NotifyManager from "../components/notify/notifymanager";
 //import './styles.css';
 
@@ -69,11 +69,11 @@ export default function App({Component, pageProps}){
       refetchInterval={5 * 60}
       >
         <ThemeProvider>
-          <NottifyProvider>
+          <NotifyProvider>
             {isRenderLoading()}
             <Component {...pageProps} />
             <NotifyManager />
-          </NottifyProvider>
+          </NotifyProvider>
         </ThemeProvider>
     </SessionProvider>
   );

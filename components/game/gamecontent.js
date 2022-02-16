@@ -6,7 +6,7 @@ import CharacterCreation from "./entity/character/charactercreation";
 import useFetch from '../hook/usefetch';
 import ThemeSection from '../system/themesection';
 
-export default function Game() {
+export default function GameContent() {
   const [ characterExist, setCharacterExist ] = useState(false);
   //check character loading exist
   const [ isLoading, setIsLoading ] = useState(true);

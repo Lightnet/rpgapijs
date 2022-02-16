@@ -20,7 +20,7 @@
     "gun": "^0.2020.1235",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.1",
-    "nanoid": "^3.2.0"
+    "nanoid": "^3.3.0"
   },
   "devDependencies": {
     "next": "^12.0.10",
