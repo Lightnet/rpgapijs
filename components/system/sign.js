@@ -8,7 +8,7 @@ import { useSession, signOut, signIn } from "next-auth/react";
 import Link from 'next/link';
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import ThemeSection from "./themesection";
+import ThemeLink from "../theme/themelink";
 
 export default function Sign() {
   const [signInPath,setSignInPath ] = useState(null)
@@ -20,11 +20,6 @@ export default function Sign() {
     if(!signInPath){
       setSignInPath("/auth/signin")
     }
-    //console.log(router.pathname);
-    //console.log(router.asPath);
-    //console.log(router.basePath);
-    //console.log(router.locale);
-    //console.log(router.domainLocales);
 
     setSignInPath("/auth/signin?callbackUrl="+window.location)
   },[router,signInPath])
@@ -45,7 +40,7 @@ export default function Sign() {
   }
   
   return (<>
-    <Link href={signInPath}>Sign in</Link> <Link href="/auth/signup">Sign Up</Link> <ThemeSection></ThemeSection>
+    <Link href={signInPath}>Sign in</Link> <Link href="/auth/signup">Sign Up</Link> <ThemeLink/>
   </>);
 }
 /*

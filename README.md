@@ -20,6 +20,7 @@
 - Node.js v16.13.0
 - MonogoDB v5.0.3
 - VScode (Optional)
+- Next.js
 
 # Informtion:
   To create simple role playing game with text and 2D image. But required some tool by create game master tool and other things to create the world around the zone and map system to build some sort of plane worlds.
@@ -37,7 +38,6 @@
 
 ## Zones:
   To random generate worlds.
-
 
 # TO DO LIST:
 - Game
@@ -166,11 +166,3 @@ HOST="http://localhost:3000"
 NEXTAUTH_URL="http://localhost:3000"
 DATABASE_URL="mongodb://127.0.0.1/rpg"
 ```
-
-
-
-
-
-
-
-

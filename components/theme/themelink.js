@@ -3,11 +3,10 @@
   Created by: Lightnet
 */
 
-//import { getSession } from "next-auth/react";
-import React, {useState, useEffect} from "react";
-import { useTheme } from "../theme/themeprovider";
+import React from "react";
+import { useTheme } from "./themeprovider.js";
 
-export default function ThemeSection() {
+export default function ThemeLink(){
 
   const {theme, setTheme} = useTheme();
 
@@ -25,6 +24,10 @@ export default function ThemeSection() {
     document.documentElement.setAttribute('data-theme', targetTheme)
     localStorage.setItem('theme', targetTheme);
   }
-  
-  return <a style={{cursor: 'pointer'}} onClick={clickTheme}>Theme {theme}</a>
+
+  function capitalizeFirstLetter(s) {
+    return s && s[0].toUpperCase() + s.slice(1);
+  }
+
+  return <a style={{cursor: 'pointer'}} onClick={clickTheme}>Theme {capitalizeFirstLetter(theme)}</a>
 }

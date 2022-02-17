@@ -1,56 +1,70 @@
+/*
+  LICENSE: MIT
+  Created by: Lightnet
+
+  Information:
+    Main Game Area entry point
+
+*/
+
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 import GameWorld from "./gameworld";
-import CharacterCreation from "./entity/character/charactercreation";
 import useFetch from '../hook/usefetch';
-import ThemeSection from '../system/themesection';
+import CreateNewGame from './entity/createnewgame';
+import ThemeLink from '../theme/themelink';
 
 export default function GameContent() {
-  const [ characterExist, setCharacterExist ] = useState(false);
-  //check character loading exist
-  const [ isLoading, setIsLoading ] = useState(true);
 
+  const [ homeBaseExist, setHomeBaseExist ] = useState(false);
+  //check new game for new player
+  const [ isCheck, setIsCheck ] = useState(false);
+  
   useEffect(async()=>{
-    const data = await useFetch('api/character');
+    const data = await useFetch('api/homebase');
     console.log("data: ",data)
     if(data.error){
-      console.log('Fetch Error GET Character');
+      console.log('Fetch Error GET Homebase');
       return;
     }
     if(data.action == "NOTFOUND"){
-      setCharacterExist(false);
-      setIsLoading(false)
+      setHomeBaseExist(false)
     }
-    if(data.action == "FOUND"){
-      setCharacterExist(true);
-      setIsLoading(false)
+    if(data.action == "HOMEBASE"){
+      if(data.homebase){
+        setHomeBaseExist(true)
+      }else{
+        setHomeBaseExist(false)
+      }
     }
+    setIsCheck(true);
   },[])
 
-  function checkCharacterExist(e){
+  function checkCreateExist(e){
     //console.log("CHECKING>>>...");
-    //console.log(e)
-    setCharacterExist(e)
+    setHomeBaseExist(true)
   }
 
-  //make sure the character exist is finish get data checks
-  function CharacterLoading(){
-    if(isLoading){
-      return <label>Loading...</label>
+  function CheckHomeBase(){
+    if(isCheck==false){
+      return <label>Progress...</label>
     }else{
-      return <CharacterCreation CreatedExist={checkCharacterExist} />
+      if(homeBaseExist){
+        return <GameWorld />
+      }else{
+        return <CreateNewGame CreatedExist={checkCreateExist}/>
+      }
     }
   }
   
   return (<>
+    <div>
       <Link href='/'>Home</Link>
       <span> | </span>
       <Link href="auth/signout">Sign Out</Link> <span> | </span>
-      <ThemeSection></ThemeSection>
-
-      { characterExist ? <GameWorld /> : (
-        CharacterLoading()
-      )}
+      <ThemeLink/>
+    </div>
+    {CheckHomeBase()}
   </>)
 }

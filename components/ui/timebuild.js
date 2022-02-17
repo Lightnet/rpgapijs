@@ -26,6 +26,15 @@ export default function TimeBuild({timedate}) {
         if(ctime<=0){
           setTime('0:0:0')
         }else{
+          if(String(hours).length <= 1){
+            hours= "0"+hours;
+          }
+          if(String(minutes).length <= 1){
+            minutes= "0"+minutes;
+          }
+          if(String(seconds).length <= 1){
+            seconds= "0"+seconds;
+          }
           setTime(hours+":"+minutes+":"+seconds)
         }
         //console.log(currenttime)
@@ -37,7 +46,6 @@ export default function TimeBuild({timedate}) {
       setTimer(_timer)
     }
     
-
     return ()=>{
       console.log('CLEAN TIMER..')
       clearInterval(timer);

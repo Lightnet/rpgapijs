@@ -4,18 +4,16 @@
 
   Note: this override the _app.js set up
 */
-
+import "../styles/global.css";
+//import './styles.css';
 import React, { useState, useEffect } from "react";
 import { SessionProvider } from 'next-auth/react';
 import { useRouter } from "next/router";
-import Loading from "../components/system/loading";
-//import getConfig from 'next/config';
-import "../styles/global.css";
 import { ThemeProvider } from "../components/theme/themeprovider";
 import { NotifyProvider } from "../components/notify/notifyprovider";
+import Loading from "../components/system/loading";
 import NotifyManager from "../components/notify/notifymanager";
-//import './styles.css';
-
+//import getConfig from 'next/config';
 // Only holds serverRuntimeConfig and publicRuntimeConfig
 //const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
 //console.log(serverRuntimeConfig);

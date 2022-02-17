@@ -12,7 +12,7 @@ import {getSelectSpecies, getSelectJobs} from "../../../../lib/game/creature";
 
 import { makeId } from "../../../../lib/helper";
 
-export default function Component({CreatedExist}) {
+export default function CharacterCreation({CreatedExist}) {
   const {data: session, status} = useSession();
   const _races = getSelectSpecies();
   const _jobs = getSelectJobs();

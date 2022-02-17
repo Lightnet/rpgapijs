@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import GMItem from "./item/gmitem";
 import GMZone from "./map/gmzone";
 import GMCreature from "./creature/gmcreature";
+import MessagePage from './message/messagepage';
 
 export default function GameMasterSection() {
   //const {data: session, status} = useSession();
@@ -22,13 +23,14 @@ export default function GameMasterSection() {
 
   function renderView(){
     if(view == "zone"){
-      return <GMZone></GMZone>
+      return <GMZone/>
     }else if(view == 'creature'){
-      return <GMCreature></GMCreature>
+      return <GMCreature/>
     }else if(view == 'item'){
-      return <GMItem></GMItem>
+      return <GMItem/>
+    }else if(view == 'messages'){
+      return <MessagePage/>
     }
-
     return <></>
   }
 
@@ -40,13 +42,12 @@ export default function GameMasterSection() {
       <a href='#' onClick={()=>setView('creature')}>Creature</a> <span> | </span>
       <a href='#' onClick={()=>setView('item')}>Item</a> <span> | </span>
       <a href='#' onClick={()=>setView('users')}>Users</a> <span> | </span>
+      <a href='#' onClick={()=>setView('messages')}>Messages</a> <span> | </span>
     </div>
     {renderView()}
   </div>
   </>);
 }
 /*
-<a href='#'>Map</a>
-<a href='#'>Map Objects</a>
 
 */
