@@ -13,19 +13,20 @@
 # Created By: Lightnet
 
 # Code Languages:
-- Javascript
-- Babel.js
+- Javascript ( browser )
+- Babel.js ( import )
+- react.js ( browser )
+- next.js (server / render react)
 
 # Softwares / Programs:
 - Node.js v16.13.0
 - MonogoDB v5.0.3
 - VScode (Optional)
-- Next.js
 
 # Informtion:
   To create simple role playing game with text and 2D image. But required some tool by create game master tool and other things to create the world around the zone and map system to build some sort of plane worlds.
 
-  By using Next.js with React.js built in to create simple user interface. To build local pc for users.
+  By using Next.js with React.js built UI, components, logic, fetch and others in to create simple user interface. To build local pc for users.
 
 
 # Design Game:
@@ -40,53 +41,46 @@
   To random generate worlds.
 
 # TO DO LIST:
+- Notify Message ( added )
+  - rework to keep it simple
 - Game
-  - logic
-    - battle
-    - produce
-    - factory
-    - guild
-    - crafting
-
-  - battle
-    - turn base (simple)
-
-  - ui
-    - battle area (simple)
-    - map (work in progress)
-    - character (simple)
-    - inventory (simple)
-    - skills (not added)
-    - homebase ( added / work in progress)
-    - buildtime (added)
-
-  - homebase:
-    - construction (work in progress)
-    - query build (work in progress)
-    - query produce (not build)
-
+  - Logic
+    - Battle
+    - Produce
+    - Factory
+    - Guild
+    - Crafting
+  - Battle
+    - Turn base (simple)
+  - UI
+    - Battle area (simple)
+    - Map (work in progress)
+    - Character (simple)
+    - Inventory (simple)
+    - Skills (not added)
+    - Homebase ( added / work in progress)
+    - Buildtime (added)
+  - Homebase:
+    - Construction (work in progress)
+    - Query build (work in progress)
+    - Query produce (not build)
 - Character
-  - create player (work in progres)
-
+  - Create player (work in progres)
 - Game Master
-  - ui (work in progress)
+  - UI (work in progress)
     - ...
-
   - zone
     - create (added)
     - delete (added)
     - list (added)
-
   - map 
     - create (added)
     - delete (added)
     - list (added)
-
   - map game object
     - create (n/a)
     - delete (n/a)
     - list (n/a)
-
   - battle
     - create (n/a)
     - delete (n/a)
@@ -129,7 +123,6 @@
 
 ## Testing battle types:
 - Turn base click. Since it used logic check on the server side to simulate simple battle calculate.
-
 - Tick time base is base on cpu time to get logic run every few seconds. That does not need to render every frame for reduce cpu used.
 
 # Next.js
